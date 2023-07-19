@@ -1,7 +1,20 @@
 import "./App.scss";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  return <div className="app"></div>;
+  return (
+    <div className="app">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" />
+          <Route path="/about" />
+          <Route path="/feature" />
+          <Route path="/feature/results" />
+          <Route path="*" />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
