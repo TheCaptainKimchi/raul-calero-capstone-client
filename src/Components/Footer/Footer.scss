@@ -1,0 +1,42 @@
+
+
+.footer {
+    background-color: black;
+    width: 100vw;
+    height: 15vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    &__logo {
+        width: 5rem;
+        img {
+            width: 100%;
+        }
+    }
+    &__nav {
+        display: flex;
+        text-align: center;
+        margin-right: 1.5rem;
+        &-item {
+            text-decoration: none;
+            color: white;
+            border-right: 1px solid white;
+            padding: 0 0.5rem;
+        }
+    }
+    &__socials {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        margin-right: 1rem;
+        &-link {
+            margin-bottom: 1rem;
+            img {
+                width: 2rem;
+            }
+        }
+    }
+}
