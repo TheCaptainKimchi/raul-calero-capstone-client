@@ -6,6 +6,7 @@ function App() {
   return (
     <div className="app">
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" />
           <Route path="/about" />
