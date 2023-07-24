@@ -1,0 +1,39 @@
+.promo {
+    height: 33vh;
+    width: 92vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #373a47;
+    padding: 1rem;
+    border-top: 1px solid #02f9fe;
+    margin-top: 5rem;
+    &__image {
+        background: url("../../Assets/Images/formula-image.png");
+        width: 50vw;
+        height: 20vh;
+        background-position: center;
+        background-size: cover;
+        border: 1px solid #02f9fe;
+    }
+    &__container {
+        width: 45%;
+        margin-left: 1rem;
+        &-title {
+            margin-bottom: 1rem;
+        }
+        &-text {
+            margin-bottom: 0.5rem;
+        }
+        &-button {
+            width: 5rem;
+            display: flex;
+            text-decoration: none;
+            button {
+                width: 100%;
+                border-radius: 20px;
+                border: 0;
+            }
+        }
+    }
+}

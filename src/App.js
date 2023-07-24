@@ -1,10 +1,14 @@
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Component imports
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 
 import Feature from "./Pages/Feature/Feature";
 import Results from "./Pages/Results/Results";
+// Page imports
+import Home from "./Pages/Home/Home";
 
 function App() {
   return (
@@ -12,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" />
+          <Route path="/" element={<Home />} />
           <Route path="/about" />
           <Route path="/feature" element={<Feature />} />
           <Route path="/feature/results" element={<Results />} />
