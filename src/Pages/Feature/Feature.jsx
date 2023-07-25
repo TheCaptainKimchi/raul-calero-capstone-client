@@ -1,6 +1,7 @@
 import "./Feature.scss";
 import CardSection from "../../Components/CardSection/CardSection";
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 const Feature = () => {
 
@@ -14,8 +15,20 @@ const Feature = () => {
             username: e.target.username.value,
             tagline: e.target.tagline.value
         };
-        navigate('/feature/results', { state: { data } });
+        getPuuid(data)
     }
+
+    function getPuuid(data) {
+        axios.get(`http://localhost:8080/puuid?userName=${data.username}&tagline=${data.tagline}`)
+        .then((response) => {
+
+            const puuid = response.data.puuid;
+
+            navigate('/feature/results', { state: { puuid } });
+
+        })
+    }
+
 
     // Axios call to find match data
     return (
