@@ -4,4 +4,20 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    &__general {
+        background-color: red;
+        width: 91%;
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 1rem;
+        &-mode::first-letter{
+            text-transform: uppercase;
+        }
+    }
+    &__player {
+        padding: 0.5rem 1rem;
+        background-color: red;
+        width: 100%;
+    }
 }

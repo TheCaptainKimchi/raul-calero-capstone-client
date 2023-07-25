@@ -19,12 +19,14 @@ const Feature = () => {
     }
 
     function getPuuid(data) {
-        axios.get(`http://localhost:8080/puuid?userName=${data.username}&tagline=${data.tagline}`)
+        const userName = data.username;
+        const tagline = data.tagline;
+        axios.get(`http://localhost:8080/puuid?userName=${userName}&tagline=${tagline}`)
         .then((response) => {
 
             const puuid = response.data.puuid;
 
-            navigate('/feature/results', { state: { puuid } });
+            navigate('/feature/results', { state: { puuid, userName, tagline } });
 
         })
     }
