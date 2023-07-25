@@ -5,37 +5,31 @@ import axios from "axios";
 
 const Results = () => {
     const location = useLocation();
-    const [matchIdList, setMatchIdList] = useState([]);
-    const [matchData, setMatchData] = useState([]);
+    const [matchData, setMatchData] = useState();
 
     // Access the data from the state object
     const puuid = location.state?.puuid || {};
 
     useEffect(() => {
-        const fetchData = async () => {
-          try {
-            // Axios call to get matchID
-            const response1 = await axios.get(`http://localhost:8080/matchId?puuid=${puuid}`)
-            .then((response)=> {
-                setMatchIdList(response.data)
-            })
+      const fetchData = async () => {
+        try {
+          // Axios call to get matchID
+          const response1 = await axios.get(`http://localhost:8080/matchId?puuid=${puuid}`);
     
-            // Axios call to get match data
-            const response2 = await axios.get(`http://localhost:8080/match?matchId=${matchIdList}`)
-            .then((response) => {
-                setMatchData(response.data);
-            })
+          // Axios call to get match data
+          const response2 = await axios.get(`http://localhost:8080/match?matchId=${response1.data[0].matchId}`);
+          setMatchData(response2.data);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
     
-          } catch (error) {
-            console.error('Error occurred:', error.message);
-          }
-        };
+      fetchData();
+    }, []);
     
-        fetchData();
-      }, []);
 
       if (!matchData) {
-        return(<div>Loading...</div>)
+        return(<div className="results">Loading...</div>)
       }
       return (
         <div className="results">
