@@ -22,9 +22,11 @@ const Results = () => {
     const fetchData = async () => {
       try {
         // Axios call to get matchID
-        const response1 = await axios.get(
-          `http://localhost:8080/matchId?puuid=${puuid}`
-        );
+        const response1 = await axios
+          .get(`http://localhost:8080/matchId?puuid=${puuid}`)
+          .catch((error) => {
+            console.error(error.response);
+          });
 
         // Sort through response1 and store matchIds in a list
         response1.data.map((matchId) => {

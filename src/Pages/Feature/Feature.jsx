@@ -28,6 +28,9 @@ const Feature = () => {
         const puuid = response.data.puuid;
 
         navigate("/feature/results", { state: { puuid, userName, tagline } });
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }
 
