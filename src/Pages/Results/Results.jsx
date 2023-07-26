@@ -6,6 +6,8 @@ import maps from "../../Data/Maps.json";
 
 const Results = () => {
   const location = useLocation();
+  const matchList = [];
+  const matchDataList = [];
   const [matchData, setMatchData] = useState();
 
   // Access the data from the state object
@@ -21,11 +23,19 @@ const Results = () => {
           `http://localhost:8080/matchId?puuid=${puuid}`
         );
 
-        // Axios call to get match data
-        const response2 = await axios.get(
-          `http://localhost:8080/match?matchId=${response1.data[0].matchId}`
-        );
-        setMatchData(response2.data);
+        // Sort through response1 and store matchIds in a list
+        response1.data.map((matchId) => {
+          return matchList.push(matchId.matchId);
+        });
+
+        // Iterate through matchList to make calls to obtain each match data from array
+        for (let i = 0; i < 9; i++) {
+          const response2 = await axios.get(
+            `http://localhost:8080/match?matchId=${matchList[i]}`
+          );
+          matchDataList.push(response2.data);
+        }
+        setMatchData(matchDataList);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -38,53 +48,60 @@ const Results = () => {
     return <div className="results">Loading...</div>;
   }
 
-  let playerDetails = matchData.players.find((player) => {
-    return (
-      player.gameName.localeCompare(userName, undefined, {
-        sensitivity: "base",
-      }) === 0
-    );
-  });
-
-  let map = maps.find((map) => {
-    if (map.assetPath === matchData.matchInfo.mapId) {
-      return map;
-    }
-  });
-
-  const kda =
-    (playerDetails.stats.kills + playerDetails.stats.assists) /
-    playerDetails.stats.deaths;
-  const acs = playerDetails.stats.score / matchData.roundResults.length - 1;
   return (
     <div className="results">
-      <div className="results__general">
-        <p className="results__general-name">{`${playerDetails.gameName}#${playerDetails.tagLine}`}</p>
-        <p className="results__general-mode">{matchData.matchInfo.queueId}</p>
-        <p className="results__general-map">{map.name}</p>
-      </div>
-      <table className="results__player">
-        <thead className="results__player-head">
-          <tr>
-            <th>Agent</th>
-            <th>Kills</th>
-            <th>Deaths</th>
-            <th>Assists</th>
-            <th>KDA</th>
-            <th>ACS</th>
-          </tr>
-        </thead>
-        <tbody className="results__player-body">
-          <tr>
-            <td>Jett</td>
-            <td>{playerDetails.stats.kills}</td>
-            <td>{playerDetails.stats.deaths}</td>
-            <td>{playerDetails.stats.assists}</td>
-            <td>{Math.round(kda * 10) / 10}</td>
-            <td>{Math.round(acs * 10) / 10}</td>
-          </tr>
-        </tbody>
-      </table>
+      {matchData.map((match, index) => {
+        const playerDetails = match.players.find((player) => {
+          return (
+            player.gameName.localeCompare(userName, undefined, {
+              sensitivity: "base",
+            }) === 0
+          );
+        });
+
+        const kda =
+          (playerDetails.stats.kills + playerDetails.stats.assists) /
+          playerDetails.stats.deaths;
+
+        const acs = playerDetails.stats.score / match.roundResults.length - 1;
+
+        const map = maps.find(
+          (map) => map.assetPath === match.matchInfo.mapId
+        )?.name;
+
+        return (
+          <div className={`match-container ${map}`} key={index}>
+            <div className={`match-container__header`}>
+              <h3 className="match-container__header-mode">
+                {match.matchInfo.queueId}
+              </h3>
+              <h3 className="match-container__header-map">{map}</h3>
+            </div>
+            <table className="match-container__table">
+              <thead>
+                <tr>
+                  <th>Agent</th>
+                  <th>Kills</th>
+                  <th>Deaths</th>
+                  <th>Assists</th>
+                  <th>KDA</th>
+                  <th>ACS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Jett</th>
+                  <th>{playerDetails.stats.kills}</th>
+                  <th>{playerDetails.stats.deaths}</th>
+                  <th>{playerDetails.stats.assists}</th>
+                  <th>{Math.round(kda * 10) / 10}</th>
+                  <th>{Math.round(acs * 10) / 10}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        );
+      })}
     </div>
   );
 };

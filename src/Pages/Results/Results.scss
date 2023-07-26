@@ -5,19 +5,78 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    &__general {
-        background-color: red;
-        width: 91%;
+}
+
+.match-container {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 2rem;
+    &__header {
         display: flex;
         justify-content: space-between;
-        padding: 1rem 1rem;
-        &-mode::first-letter{
+        margin-bottom: 0.5rem;
+        &-mode::first-letter {
             text-transform: uppercase;
         }
     }
-    &__player {
-        padding: 0.5rem 1rem;
-        background-color: red;
-        width: 100%;
+    &__table {
+        width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+  
+    th, td {
+      padding: 8px;
+      text-align: center;
+      border: 1px solid black;
+    }
+  
+    th {
+      background-color: #f2f2f2;
+    }
+  
+    tbody {
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+    }
     }
 }
+
+.Ascent {
+    background: url();
+}
+.Split {
+    background: url();
+}
+.Fracture {
+    background: url();
+}
+.Bind {
+    background: url();
+}
+.Breeze {
+    background: url();
+}
+.District {
+    background: url();
+}
+.Kasbah {
+    background: url();
+}
+.Piazza {
+    background: url();
+}
+.Lotus {
+    background: url();
+}
+.Pearl {
+    background: url();
+}
+.Icebox {
+    background: url();
+}
+.Haven {
+    background: url();
+}
+
+  
