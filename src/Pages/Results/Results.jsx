@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./Results.scss";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import maps from "../../Data/Maps.json";
 import agents from "../../Data/Agents.json";
@@ -47,11 +48,22 @@ const Results = () => {
   }, []);
 
   if (!matchData) {
-    return <div className="results">Loading...</div>;
+    return <div className="results-loading">Loading...</div>;
   }
 
   return (
     <div className="results">
+      <div className="results__top">
+        <Link className="results__top-return" to={"/feature"}>
+          <img
+            className="results__top-return-image"
+            src="http://localhost:8080/icons/chevron-left.svg"
+            alt="return-icon"
+          ></img>
+          <h3 className="results__top-return-text">Search Again</h3>
+        </Link>
+        <h2 className="results__top-user">{`${userName}#${tagline}`}</h2>
+      </div>
       {matchData.map((match) => {
         const key = match.matchInfo.matchId;
 
@@ -97,30 +109,37 @@ const Results = () => {
 
         const matchInfo = {
           id: key,
-          playerDetails: playerDetails,
+          userName: playerDetails.gameName,
+          tagline: playerDetails.tagLine,
+          puuid: playerDetails.puuid,
+          kills: playerDetails.stats.kills,
+          deaths: playerDetails.stats.deaths,
+          assists: playerDetails.stats.assists,
           kda: kda,
           acs: acs,
           map: map,
-          agent: agent,
+          agent: agent.name,
           mode: mode,
         };
 
-        useEffect(() => {
-          const addMatchInfo = async () => {
-            try {
-              // Make a POST request to the localhost server
-              const response = await axios.post(
-                `http://localhost:8080/leaderboard?id=${matchInfo.id}&playerDetails=${matchInfo.playerDetails}&kda=${matchInfo.kda}&acs=${matchInfo.acs}&map=${matchInfo.map}&agent=${matchInfo.agent}&mode=${matchInfo.mode}`
-              );
+        async function postData() {
+          try {
+            const response = await axios.post(
+              `http://localhost:8080/leaderboard?id=${matchInfo.id}&userName=${matchInfo.userName}&tagline=${matchInfo.tagline}&puuid=${matchInfo.puuid}&kills=${matchInfo.kills}&deaths=${matchInfo.deaths}&assists=${matchInfo.assists}&kda=${matchInfo.kda}&acs=${matchInfo.acs}&map=${matchInfo.map}&agent=${matchInfo.agent}&mode=${matchInfo.mode}`
+            );
+            console.log("Response data:", response.data);
 
-              console.log("Response:", response.data);
-            } catch (error) {
-              console.error("Error adding match info:", error);
+            return response.data;
+          } catch (error) {
+            if (
+              error.response.data.error !=
+              "Data with the same id already exists"
+            ) {
+              console.error("Error posting data:", error);
             }
-          };
-
-          addMatchInfo();
-        }, []);
+          }
+        }
+        postData();
 
         return (
           <div className={`match-container ${map}`} key={key}>
