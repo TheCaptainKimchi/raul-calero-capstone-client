@@ -19,18 +19,24 @@
         margin-left: 1rem;
         &-title {
             margin-bottom: 1rem;
+            color: white;
         }
         &-text {
             margin-bottom: 0.5rem;
+            color: white;
+            font-style: italic;
         }
         &-button {
-            width: 5rem;
+            width: 5.5rem;
+            height: 1.25rem;
             display: flex;
             text-decoration: none;
             button {
                 width: 100%;
                 border-radius: 20px;
                 border: 0;
+                background-color: blue;
+                color: white;
             }
         }
     }

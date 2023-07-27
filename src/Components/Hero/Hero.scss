@@ -21,11 +21,14 @@
     &__button {
         display: flex;
         width: 6rem;
+        height: 1.5rem;
         text-decoration: none;
         button {
             width: 100%;
             border-radius: 20px;
             border: 0;
+            background-color: blue;
+            color: white;
         }
     }
     &__title, &__text {
