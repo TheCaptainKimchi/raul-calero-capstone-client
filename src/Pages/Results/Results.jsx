@@ -101,6 +101,8 @@ const Results = () => {
         let mode = "";
         if (match.matchInfo.queueId === "ggteam") {
           mode = "escalation";
+        } else if (match.matchInfo.queueId === "hurm") {
+          mode = "team deathmatch";
         } else if (!match.matchInfo.queueId) {
           mode = "custom";
         } else {
