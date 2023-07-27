@@ -9,6 +9,7 @@ import Feature from "./Pages/Feature/Feature";
 import Results from "./Pages/Results/Results";
 // Page imports
 import Home from "./Pages/Home/Home";
+import About from "./Pages/About/About";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" />
+          <Route path="/about" element={<About />} />
           <Route path="/feature" element={<Feature />} />
           <Route path="/feature/results" element={<Results />} />
           <Route path="*" />
