@@ -42,6 +42,7 @@ const Results = () => {
         }
         setMatchData(matchDataList);
       } catch (error) {
+        setMatchData("Error");
         console.error("Error fetching data:", error);
       }
     };
@@ -51,6 +52,44 @@ const Results = () => {
 
   if (!matchData) {
     return <div className="results-loading">Loading...</div>;
+  } else if (matchData.length === 0) {
+    return (
+      <div className="no-results">
+        <div className="no-results__top">
+          <Link className="results__top-return" to={"/feature"}>
+            <img
+              className="results__top-return-image"
+              src="http://localhost:8080/icons/chevron-left.svg"
+              alt="return-icon"
+            ></img>
+            <h3 className="results__top-return-text">Search Again</h3>
+          </Link>
+          <h2 className="results__top-user">{`${userName}#${tagline}`}</h2>
+        </div>
+        <div className="no-results__text">
+          <p>No matches found. Try queuing up for some games</p>
+        </div>
+      </div>
+    );
+  } else if (matchData === "Error") {
+    return (
+      <div className="no-results">
+        <div className="no-results__top">
+          <Link className="results__top-return" to={"/feature"}>
+            <img
+              className="results__top-return-image"
+              src="http://localhost:8080/icons/chevron-left.svg"
+              alt="return-icon"
+            ></img>
+            <h3 className="results__top-return-text">Search Again</h3>
+          </Link>
+          <h2 className="results__top-user">{`${userName}#${tagline}`}</h2>
+        </div>
+        <div className="no-results__text">
+          <p>No matches found. Try queuing up for some games</p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -66,6 +105,7 @@ const Results = () => {
         </Link>
         <h2 className="results__top-user">{`${userName}#${tagline}`}</h2>
       </div>
+
       {matchData.map((match) => {
         const key = match.matchInfo.matchId;
 
@@ -80,6 +120,8 @@ const Results = () => {
             }) === 0
           );
         });
+
+        console.log(`===== ${playerDetails.gameName} =====`);
 
         const kda =
           (playerDetails.stats.kills + playerDetails.stats.assists) /

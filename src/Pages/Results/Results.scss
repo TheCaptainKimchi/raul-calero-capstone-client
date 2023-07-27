@@ -18,7 +18,6 @@
     text-align: center;
     background: rgb(52, 56, 68);
     background-size: 400% 400%;
-    animation: animate 6s ease infinite;
     &__top {
         background-color: rgb(21, 19, 32);
         width: 100%;
@@ -49,17 +48,53 @@
     }
 }
 
-@keyframes animate {
-    0% {
-        background-position: 0 50%;
+.no-results {
+    padding: 10rem 1rem 14rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: rgb(52, 56, 68);
+    background-size: 400% 400%;
+    height: 50vh;
+    &__top {
+        background-color: rgb(21, 19, 32);
+        width: 100%;
+        height: 8rem;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1rem;
+        align-items: center;
+        margin-bottom: 1rem;
+        &-return {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            &-image {
+                width: 2rem;
+                margin-right: -0.25rem;
+            }
+            &-text {
+                color: white;
+            }
+        }
+        &-user {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-transform: uppercase;
+        }
     }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0 50%;
+    &__text {
+        color: white;
+        width: 100%;
+        height: 30vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
+
 
 .match-container {
     text-align: center;
