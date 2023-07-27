@@ -51,7 +51,14 @@ const Results = () => {
   }, []);
 
   if (!matchData) {
-    return <div className="results-loading">Loading...</div>;
+    return (
+      <div className="results-loading">
+        <div className="results-loading__header"></div>
+        <div className="results-loading__card"></div>
+        <div className="results-loading__card"></div>
+        <div className="results-loading__card"></div>
+      </div>
+    );
   } else if (matchData.length === 0) {
     return (
       <div className="no-results">
