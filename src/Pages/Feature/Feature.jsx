@@ -56,10 +56,19 @@ const Feature = () => {
 
   if (!leaderboard) {
     return (
-      <div className="feature">
-        <div className="feature__leaderboard">
-          <h2 className="feature__title">Leaderboard</h2>
-          <p>Loading...</p>
+      <div className="loading">
+        <div className="leaderboard-wrapper">
+          <div className="loading__leaderboard">
+            <h2 className="loading__leaderboard-title">Leaderboard</h2>
+            <div className="loading__leaderboard-container">
+              <div className="loading__leaderboard-container-kda"></div>
+              <div className="feature__leaderboard-container-list">
+                <div className="feature__leaderboard-container-list-kills"></div>
+                <div className="feature__leaderboard-container-list-deaths"></div>
+                <div className="feature__leaderboard-container-list-assists"></div>
+              </div>
+            </div>
+          </div>
         </div>
         <form className="feature__form" onSubmit={submitHandler}>
           <h2 className="feature__form-title">SEARCH PLAYER</h2>
