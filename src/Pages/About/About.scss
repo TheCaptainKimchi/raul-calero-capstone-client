@@ -1,1 +1,157 @@
 @use "../../Styles/Partials/resets";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/variables-dark";
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/carousel";
+
+@import "~bootstrap/scss/helpers";
+
+.about {
+  background: black;
+  height: 140vh;
+  width: 100vw;
+  padding-top: 15vh;
+  &__project {
+    display: flex;
+    width: 100%;
+    height: 20vh;
+    padding-top: 2rem;
+    background: url("../../Assets/Images/spark-image.png");
+    background-position: 10% 70%;
+    background-size: 200px 150px;
+    background-repeat: no-repeat;
+    justify-content: flex-end;
+    align-items: center;
+    &-container {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      text-align: center;
+      &-title,
+      &-text {
+        color: white;
+      }
+      &-title {
+        margin-bottom: 1rem;
+      }
+      &-text {
+        margin-bottom: 0.5rem;
+      }
+      &-button {
+        width: 5rem;
+        height: 1.25rem;
+        button {
+          width: 100%;
+          height: 100%;
+          background-color: blue;
+          border: 0;
+          border-radius: 20px;
+          color: white;
+        }
+      }
+    }
+  }
+  &__developer {
+    margin: 1rem;
+    padding: 1rem;
+    border-top: 1px solid #02f9fe;
+    width: 83vw;
+    height: 110vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-title {
+      color: white;
+      margin-bottom: 1rem;
+    }
+    &-me {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 0;
+      &-image {
+        width: 50%;
+        height: 60%;
+        border-radius: 20px;
+        margin-right: 1rem;
+        background: url("../../Assets/Images/raul-fancy.jpg");
+        background-position: center;
+        background-size: cover;
+      }
+      &-text {
+        width: 50%;
+        color: white;
+        margin-bottom: 1rem;
+        text-align: left;
+      }
+    }
+    &-connect {
+      background-color: #000220;
+      border-radius: 20px;
+      display: flex;
+      height: 15%;
+      width: 100%;
+      justify-content: space-evenly;
+      align-items: center;
+      margin-bottom: 2rem;
+      &-title {
+        color: white;
+      }
+      &-socials {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        width: 30%;
+        height: 100%;
+        &-linkedin {
+          text-decoration: none;
+          color: white;
+          height: 1.5rem;
+          background-color: blue;
+          border-radius: 8px;
+          margin-bottom: 1rem;
+        }
+        &-bot {
+          display: flex;
+          width: 100%;
+          justify-content: space-evenly;
+          &-github {
+            background-color: white;
+            color: black;
+          }
+          &-email {
+            background-color: red;
+            color: white;
+          }
+          a {
+            text-decoration: none;
+            height: 1.5rem;
+            width: 100%;
+            border-radius: 8px;
+            margin: 0 0.25rem;
+            padding: 0 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.carousel-item img {
+  width: 20rem;
+  height: 13rem;
+  border-radius: 10px;
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 1rem;
+}
