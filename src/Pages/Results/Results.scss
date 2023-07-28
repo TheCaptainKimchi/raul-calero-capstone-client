@@ -1,83 +1,85 @@
+@use "../../Styles/Partials/breakpoints" as *;
+
 .results-loading {
-    padding: 7.9rem 1rem 14rem 1rem;
-    height: 70vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background: rgb(52, 56, 68);
+  padding: 7.9rem 1rem 14rem 1rem;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgb(52, 56, 68);
+  background-size: 400% 400%;
+  animation: animate 6s ease infinite;
+  &__header {
+    width: 100vw;
+    height: 20rem;
+    background: linear-gradient(-45deg, grey, black, silver);
     background-size: 400% 400%;
-    animation: animate 6s ease infinite;
-        &__header {
-            width: 100vw;
-            height: 20rem;
-            background: linear-gradient(-45deg,grey,black, silver);
-            background-size: 400% 400%;
-            margin-bottom: 2rem;
-            animation: skeleton 5s ease infinite;
-        }
-        &__card {
-            background: linear-gradient(-45deg,grey,black, silver);
-            background-size: 400% 400%;
-            width: 100vw;
-            height: 30vh;
-            margin-bottom: 1rem;
-            animation: skeleton 5s ease infinite;
-            padding: 3rem 0;
-        }
-    }
+    margin-bottom: 2rem;
+    animation: skeleton 5s ease infinite;
+  }
+  &__card {
+    background: linear-gradient(-45deg, grey, black, silver);
+    background-size: 400% 400%;
+    width: 100vw;
+    height: 30vh;
+    margin-bottom: 1rem;
+    animation: skeleton 5s ease infinite;
+    padding: 3rem 0;
+  }
+}
 
 @keyframes skeleton {
-    0% {
-        background-position: 0% 100%;
-    }
-    50% {
-        background-position: 50% 100%;
-    }
-    100% {
-        background-position: 0% 100%;
-    }
+  0% {
+    background-position: 0% 100%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
 }
 
 .results {
-    padding: 7.9rem 1rem 16.1rem 1rem;
+  padding: 0 1rem 16.1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgb(52, 56, 68);
+  background-size: 400% 400%;
+  height: 100%;
+  &__top {
+    background-color: rgb(21, 19, 32);
+    width: 100%;
+    height: 15vh;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem 1rem 0 1rem;
     align-items: center;
-    text-align: center;
-    background: rgb(52, 56, 68);
-    background-size: 400% 400%;
-    &__top {
-        background-color: rgb(21, 19, 32);
-        width: 100%;
-        height: 8rem;
-        display: flex;
-        justify-content: space-between;
-        padding: 0 1rem;
-        align-items: center;
-        margin-bottom: 1rem;
-        &-return {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            &-image {
-                width: 2rem;
-                margin-right: -0.25rem;
-            }
-            &-text {
-                color: white;
-            }
-        }
-        &-user {
-            display: flex;
-            align-items: center;
-            color: white;
-            text-transform: uppercase;
-        }
+    margin-top: 14vh;
+    margin-bottom: 1.75rem;
+    &-return {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      &-image {
+        width: 2rem;
+        margin-right: -0.25rem;
+      }
+      &-text {
+        color: white;
+      }
     }
-}
-
-.no-results {
+    &-user {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-transform: uppercase;
+    }
+  }
+  .no-results {
     padding: 7.9rem 1rem 14rem 1rem;
     display: flex;
     flex-direction: column;
@@ -87,130 +89,199 @@
     background-size: 400% 400%;
     height: 50vh;
     &__top {
-        background-color: rgb(21, 19, 32);
-        width: 100%;
-        height: 8rem;
+      background-color: rgb(21, 19, 32);
+      width: 100%;
+      height: 8rem;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+      &-return {
         display: flex;
-        justify-content: space-between;
-        padding: 0 1rem;
         align-items: center;
-        margin-bottom: 1rem;
-        &-return {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            &-image {
-                width: 2rem;
-                margin-right: -0.25rem;
-            }
-            &-text {
-                color: white;
-            }
+        text-decoration: none;
+        &-image {
+          width: 2rem;
+          margin-right: -0.25rem;
         }
-        &-user {
-            display: flex;
-            align-items: center;
-            color: white;
-            text-transform: uppercase;
+        &-text {
+          color: white;
         }
+      }
+      &-user {
+        display: flex;
+        align-items: center;
+        color: white;
+        text-transform: uppercase;
+      }
     }
     &__text {
-        color: white;
-        width: 100%;
-        height: 30vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      color: white;
+      width: 100%;
+      height: 30vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-}
-
-
-.match-container {
+  }
+  .match-container {
     text-align: center;
     width: 100%;
     margin-bottom: 2rem;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     &__header {
-        display: flex;
-        justify-content: space-between;
-        padding: 1rem;
-        background-color: rgba(0, 0, 0, 0.493);
-        width: 84vw;
-        &-mode, &-map {
-            color: white;
-        }
-        &-mode::first-letter {
-            text-transform: uppercase;
-        }
-    }
-    &__table {
-    width: 92.43vw;
-    margin: 0 auto;
-    border-collapse: collapse;
-
-    tr {
-        width: 100%;
-    }
-  
-    th {
-      padding: 8px;
-      text-align: center;
-      border: 1px solid black;
-    }
-  
-    th {
-      background-color: #f2f2f2;
-      font-size: 0.75rem;
-    }
-  
-    tbody {
-      tr:nth-child(even) {
-        background-color: #f9f9f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background-color: rgba(0, 0, 0, 0.493);
+      width: 92%;
+      &-mode,
+      &-map {
+        color: white;
+      }
+      &-mode::first-letter {
+        text-transform: uppercase;
       }
     }
+    &__table {
+      width: 92.43vw;
+      margin: 0 auto;
+      border-collapse: collapse;
+
+      tr {
+        width: 100%;
+      }
+
+      th {
+        padding: 8px;
+        text-align: center;
+        border: 1px solid black;
+      }
+
+      th {
+        background-color: #f2f2f2;
+        font-size: 0.75rem;
+      }
+
+      tbody {
+        tr:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+      }
     }
-}
-
-.Ascent {
+  }
+  .Ascent {
     background: url("https://media.valorant-api.com/maps/7eaecc1b-4337-bbf6-6ab9-04b8f06b3319/splash.png");
-}
-.Split {
+  }
+  .Split {
     background: url("https://media.valorant-api.com/maps/d960549e-485c-e861-8d71-aa9d1aed12a2/splash.png");
-}
-.Fracture {
+  }
+  .Fracture {
     background: url("https://media.valorant-api.com/maps/b529448b-4d60-346e-e89e-00a4c527a405/splash.png");
-}
-.Bind {
+  }
+  .Bind {
     background: url("https://media.valorant-api.com/maps/2c9d57ec-4431-9c5e-2939-8f9ef6dd5cba/splash.png");
-}
-.Breeze {
+  }
+  .Breeze {
     background: url("https://media.valorant-api.com/maps/2fb9a4fd-47b8-4e7d-a969-74b4046ebd53/splash.png");
-}
-.District {
+  }
+  .District {
     background: url("https://media.valorant-api.com/maps/690b3ed2-4dff-945b-8223-6da834e30d24/splash.png");
-}
-.Kasbah {
+  }
+  .Kasbah {
     background: url("https://media.valorant-api.com/maps/12452a9d-48c3-0b02-e7eb-0381c3520404/splash.png");
-}
-.Piazza {
+  }
+  .Piazza {
     background: url("https://media.valorant-api.com/maps/de28aa9b-4cbe-1003-320e-6cb3ec309557/splash.png");
-}
-.Lotus {
+  }
+  .Lotus {
     background: url("https://media.valorant-api.com/maps/2fe4ed3a-450a-948b-6d6b-e89a78e680a9/splash.png");
-}
-.Pearl {
+  }
+  .Pearl {
     background: url("https://media.valorant-api.com/maps/fd267378-4d1d-484f-ff52-77821ed10dc2/splash.png");
-}
-.Icebox {
+  }
+  .Icebox {
     background: url("https://media.valorant-api.com/maps/e2ad5c54-4114-a870-9641-8ea21279579a/splash.png");
-}
-.Haven {
+  }
+  .Haven {
     background: url("https://media.valorant-api.com/maps/2bee0dc9-4ffe-519b-1cbd-7fbe763a6047/splash.png");
-}
+  }
 
-.Ascent, .Split, .Fracture, .Bind, .Breeze, .District, .Kasbah, .Piazza, .Lotus, .Pearl, .Icebox, .Haven {
+  .Ascent,
+  .Split,
+  .Fracture,
+  .Bind,
+  .Breeze,
+  .District,
+  .Kasbah,
+  .Piazza,
+  .Lotus,
+  .Pearl,
+  .Icebox,
+  .Haven {
     background-position: center;
     background-size: cover;
+  }
+  @include tablet {
+    &__top {
+      &-return {
+        img {
+          width: 4rem;
+        }
+        &-text {
+          font-size: 1.5rem;
+        }
+      }
+      &-user {
+        font-size: 2rem;
+      }
+    }
+    .match-container {
+      width: 90%;
+      height: 15vh;
+      justify-content: center;
+      border-radius: 20px;
+      &__header h3 {
+        font-size: 1.5rem;
+      }
+      &__table {
+        width: 96.59%;
+        thead tr th {
+          font-size: 1.5rem;
+        }
+        tbody tr th {
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+  @include tablet {
+    &__top {
+      height: 10vh;
+    }
+    .match-container {
+      width: 40%;
+      padding: 2rem;
+      height: 25vh;
+      justify-content: center;
+      border-radius: 20px;
+      &__header h3 {
+        font-size: 1.5rem;
+      }
+      &__table {
+        width: 96.59%;
+        thead tr th {
+          font-size: 1.5rem;
+        }
+        tbody tr th {
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
 }
-
-  

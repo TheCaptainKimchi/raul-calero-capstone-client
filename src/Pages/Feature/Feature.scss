@@ -1,123 +1,128 @@
+@use "../../Styles/Partials/breakpoints" as *;
+
 .feature {
-    padding: 7.9rem 1rem 0 1rem;
+  padding: 7.9rem 1rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+  background: #373a47;
+  &__leaderboard {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 70vh;
-    background: #373a47;
-    &__leaderboard {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100vw;
-        padding-top: 1rem;
-        &-title {
-            color: white;
-            padding-bottom: 1rem;
-            z-index: 2;
-        }
-        &-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-            align-items: center;
-            z-index: 2;
-            &-kda {
-                background-color: rgba(255, 255, 255, 0.1);
-                border-radius: 20px;
-                padding: 1rem 0;
-                width: 50%;
-                height: 7rem;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                backdrop-filter: blur(10px);
-                animation: pulsate 3s ease-in-out infinite;
-                h3,p {
-                    color: white;
-                }
-            }
-            &-list {
-                display: flex;
-                padding: 1rem 0;
-                &-kills , &-deaths , &-assists {
-                    background-color: rgba(255, 255, 255, 0.1);
-                    backdrop-filter: blur(10px);
-                    border-radius: 20px;
-                    margin: 0 0.25rem;
-                    width: 7rem;
-                    height: 6rem;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    h3 {
-                        font-size: 0.8rem;
-                        padding-bottom: 0.5rem;
-                    }
-                    p {
-                        font-size: 0.75rem;
-                    }
-                    p::first-letter {
-                        text-transform: uppercase;
-                    }
-                    h3,p {
-                        color: white;
-                    }
-                }
-            }
-        }
+    width: 100vw;
+    padding-top: 1rem;
+    &-title {
+      color: white;
+      padding-bottom: 1rem;
+      z-index: 2;
     }
-    &__form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #000220;
+    &-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+      z-index: 2;
+      &-kda {
+        background-color: rgba(255, 255, 255, 0.1);
         border-radius: 20px;
-        width: 100%;
-        height: 20vh;
-        justify-content: flex-start;
-        margin-top: 2.5rem;
-        &-title {
-            margin: 1rem 0 1.5rem 0;
+        padding: 1rem 0;
+        width: 50%;
+        height: 7rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        backdrop-filter: blur(10px);
+        animation: pulsate 3s ease-in-out infinite;
+        h3,
+        p {
+          color: white;
+        }
+      }
+      &-list {
+        display: flex;
+        padding: 1rem 0;
+        &-kills,
+        &-deaths,
+        &-assists {
+          background-color: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+          border-radius: 20px;
+          margin: 0 0.25rem;
+          width: 7rem;
+          height: 6rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          h3 {
+            font-size: 0.8rem;
+            padding-bottom: 0.5rem;
+          }
+          p {
+            font-size: 0.75rem;
+          }
+          p::first-letter {
+            text-transform: uppercase;
+          }
+          h3,
+          p {
             color: white;
+          }
         }
-        &-input {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0.5rem;
-            &--tagline {
-                width: 4rem;
-                margin-left: 1rem;
-            }
-        }
-        &-button {
-            width: 7rem;
-            border-radius: 20px;
-            border: 0;
-            background-color: blue;
-            color: white;
-            margin-top: 0.5rem;
-        }
-        &-hide {
-            display: none;
-        }
-        &-error {
-            display: flex;
-            text-align: center;
-            padding-top: 3rem;
-            color: red;
-        }
-        .input {
-            border-radius: 20px;
-            border: 0;
-            padding-left: 0.5rem;
-            background-color: white;
-        }
+      }
     }
-}
-.leaderboard-wrapper {
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000220;
+    border-radius: 20px;
+    width: 100%;
+    height: 20vh;
+    justify-content: flex-start;
+    margin-top: 2.5rem;
+    &-title {
+      margin: 1rem 0 1.5rem 0;
+      color: white;
+    }
+    &-input {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+      &--tagline {
+        width: 4rem;
+        margin-left: 1rem;
+      }
+    }
+    &-button {
+      width: 7rem;
+      border-radius: 20px;
+      border: 0;
+      background-color: blue;
+      color: white;
+      margin-top: 0.5rem;
+    }
+    &-hide {
+      display: none;
+    }
+    &-error {
+      display: flex;
+      text-align: center;
+      padding-top: 3rem;
+      color: red;
+    }
+    .input {
+      border-radius: 20px;
+      border: 0;
+      padding-left: 0.5rem;
+      background-color: white;
+    }
+  }
+  .leaderboard-wrapper {
     position: relative;
     overflow: hidden;
 
@@ -128,15 +133,15 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url("../../Assets/Images/leaderboard-image.png"); 
+      background: url("../../Assets/Images/leaderboard-image.png");
       background-position: center;
       background-size: cover;
-      filter: blur(2px); 
-      pointer-events: none; 
+      filter: blur(2px);
+      pointer-events: none;
       z-index: 0;
     }
-}
-.loading {
+  }
+  .loading {
     padding: 7.9rem 1rem 0 1rem;
     display: flex;
     flex-direction: column;
@@ -144,80 +149,152 @@
     height: 70vh;
     background: #373a47;
     &__leaderboard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100vw;
+      height: 35vh;
+      padding-top: 1rem;
+      &-title {
+        color: white;
+        padding-bottom: 1rem;
+        z-index: 2;
+      }
+      &-container {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        text-align: center;
         align-items: center;
-        width: 100vw;
-        height: 35vh;
-        padding-top: 1rem;
-        &-title {
+        z-index: 2;
+        height: 100%;
+        &-kda {
+          background-color: rgba(255, 255, 255, 0.1);
+          border-radius: 20px;
+          padding: 1rem 0;
+          width: 8rem;
+          height: 75%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          backdrop-filter: blur(10px);
+          animation: pulsate 3s ease-in-out infinite;
+          h3,
+          p {
             color: white;
-            padding-bottom: 1rem;
-            z-index: 2;
+          }
         }
-        &-container {
+        &-list {
+          display: flex;
+          padding: 1rem 0;
+          &-kills,
+          &-deaths,
+          &-assists {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 0 0.25rem;
+            width: 20%;
+            height: 20%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            text-align: center;
-            align-items: center;
-            z-index: 2;
-            height: 100%;
-            &-kda {
-                background-color: rgba(255, 255, 255, 0.1);
-                border-radius: 20px;
-                padding: 1rem 0;
-                width: 8rem;
-                height: 75%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                backdrop-filter: blur(10px);
-                animation: pulsate 3s ease-in-out infinite;
-                h3,p {
-                    color: white;
-                }
+            h3 {
+              font-size: 0.8rem;
+              padding-bottom: 0.5rem;
             }
-            &-list {
-                display: flex;
-                padding: 1rem 0;
-                &-kills , &-deaths , &-assists {
-                    background-color: rgba(255, 255, 255, 0.1);
-                    backdrop-filter: blur(10px);
-                    border-radius: 20px;
-                    margin: 0 0.25rem;
-                    width: 20%;
-                    height: 20%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    h3 {
-                        font-size: 0.8rem;
-                        padding-bottom: 0.5rem;
-                    }
-                    p {
-                        font-size: 0.75rem;
-                    }
-                    p::first-letter {
-                        text-transform: uppercase;
-                    }
-                    h3,p {
-                        color: white;
-                    }
-                }
+            p {
+              font-size: 0.75rem;
             }
+            p::first-letter {
+              text-transform: uppercase;
+            }
+            h3,
+            p {
+              color: white;
+            }
+          }
         }
-    }
-}
-
-  @keyframes pulsate {
-    0% {
-      box-shadow: 0 0 10px 5px rgba(2, 249, 254, 0.5);
-    }
-    50% {
-      box-shadow: 0 0 10px 5px rgba(2, 249, 254, 0);
-    }
-    100% {
-      box-shadow: 0 0 10px 5px rgba(2, 249, 254, 0.5);
+      }
     }
   }
+  @include tablet {
+    &__leaderboard {
+      height: 40vh;
+      padding: 2rem 0;
+      justify-content: center;
+      &-title {
+        font-size: 2rem;
+      }
+      &-container {
+        &-kda {
+          h3 {
+            font-size: 1.5rem;
+          }
+          p {
+            font-size: 1.25rem;
+          }
+        }
+        &-list {
+          &-kills,
+          &-deaths,
+          &-assists {
+            width: 15rem;
+            height: 8rem;
+            h3 {
+              font-size: 1.5rem;
+            }
+            p {
+              font-size: 1.25rem;
+            }
+          }
+        }
+      }
+    }
+    &__form {
+      justify-content: center;
+      margin-top: 3rem;
+      &-title {
+        font-size: 2rem;
+        margin-top: 0;
+      }
+      &-input {
+        &--username {
+          width: 40%;
+          height: 2rem;
+        }
+        &--tagline {
+          width: 20%;
+          height: 2rem;
+        }
+      }
+      &-button {
+        width: 25%;
+        height: 2rem;
+      }
+    }
+  }
+  @include desktop {
+    &__leaderboard {
+      &-title {
+        font-size: 2.5rem;
+      }
+    }
+    &__form {
+      width: 50rem;
+      margin-top: 1.9rem;
+    }
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 10px 5px rgba(2, 249, 254, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 10px 5px rgba(2, 249, 254, 0);
+  }
+  100% {
+    box-shadow: 0 0 10px 5px rgba(2, 249, 254, 0.5);
+  }
+}
