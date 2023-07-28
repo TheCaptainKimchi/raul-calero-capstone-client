@@ -1,4 +1,5 @@
 @use "../../Styles/Partials/resets";
+@use "../../Styles/Partials/breakpoints" as *;
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/variables-dark";
@@ -12,11 +13,9 @@
 .about {
   background: black;
   height: 140vh;
-  width: 100vw;
   padding-top: 15vh;
   &__project {
     display: flex;
-    width: 100%;
     height: 20vh;
     padding-top: 2rem;
     background: url("../../Assets/Images/spark-image.png");
@@ -60,7 +59,6 @@
     margin: 1rem;
     padding: 1rem;
     border-top: 1px solid #02f9fe;
-    width: 83vw;
     height: 110vh;
     display: flex;
     flex-direction: column;
@@ -72,12 +70,12 @@
     &-me {
       display: flex;
       width: 100%;
-      justify-content: space-between;
+      justify-content: space-evenly;
       align-items: center;
       padding: 2rem 0;
       &-image {
-        width: 50%;
-        height: 60%;
+        width: 10rem;
+        height: 10rem;
         border-radius: 20px;
         margin-right: 1rem;
         background: url("../../Assets/Images/raul-fancy.jpg");
@@ -100,6 +98,7 @@
       justify-content: space-evenly;
       align-items: center;
       margin-bottom: 2rem;
+      border: 1px solid #02f9fe;
       &-title {
         color: white;
       }
@@ -139,6 +138,62 @@
             padding: 0 1rem;
           }
         }
+      }
+    }
+  }
+  @include tablet {
+    &__project {
+      background-position: 20% 70%;
+      background-size: 300px 200px;
+      margin: 3rem;
+      &-container {
+        padding-right: 2rem;
+        &-title {
+          font-size: 2rem;
+        }
+        &-text {
+          font-size: 1.25rem;
+        }
+      }
+    }
+    &__developer {
+      margin: 3rem;
+      &-title {
+        font-size: 2rem;
+      }
+      &-me {
+        &-image {
+          width: 15rem;
+          height: 15rem;
+        }
+        &-text {
+          font-size: 1.25rem;
+        }
+      }
+      &-connect {
+        width: 80%;
+        margin-bottom: 5rem;
+        margin-top: 3rem;
+        &-title {
+          font-size: 2rem;
+        }
+      }
+    }
+    .carousel-item img {
+      width: 30rem;
+      height: 20rem;
+    }
+  }
+  @include desktop {
+    height: 175vh;
+    &__project {
+      margin: 5rem 10rem;
+      background-size: 30rem 15rem;
+    }
+    &__developer {
+      &-connect {
+        width: 50rem;
+        height: 15rem;
       }
     }
   }

@@ -20,6 +20,7 @@ const Results = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log("first");
       try {
         // Axios call to get matchID
         const response1 = await axios

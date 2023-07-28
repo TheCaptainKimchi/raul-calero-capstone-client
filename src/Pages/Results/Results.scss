@@ -11,9 +11,9 @@
   background-size: 400% 400%;
   animation: animate 6s ease infinite;
   &__header {
-    width: 100vw;
     height: 20rem;
-    background: linear-gradient(-45deg, grey, black, silver);
+    width: 99vw;
+    background: linear-gradient(-45deg, silver, white, black);
     background-size: 400% 400%;
     margin-bottom: 2rem;
     animation: skeleton 5s ease infinite;
@@ -21,8 +21,8 @@
   &__card {
     background: linear-gradient(-45deg, grey, black, silver);
     background-size: 400% 400%;
-    width: 100vw;
     height: 30vh;
+    width: 90vw;
     margin-bottom: 1rem;
     animation: skeleton 5s ease infinite;
     padding: 3rem 0;
