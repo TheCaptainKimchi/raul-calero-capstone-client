@@ -10,6 +10,7 @@ import Results from "./Pages/Results/Results";
 import Home from "./Pages/Home/Home";
 import About from "./Pages/About/About";
 import Login from "./Pages/Login/Login";
+import RegisterForm from "./Pages/RegisterForm/RegisterForm";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/feature" element={<Feature />} />
           <Route path="/feature/results" element={<Results />} />
           <Route path="/profile" element={<Login />} />
+          <Route path="/register" element={<RegisterForm />} />
           <Route path="*" />
         </Routes>
         <Footer />

@@ -3,9 +3,11 @@ import LoginForm from "../../Components/LoginForm/LoginForm.jsx";
 import Profile from "../../Components/Profile/Profile";
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  // useNavigate
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // On page load, check if the auth token is in session storage, if so, the user is already logged in
@@ -16,15 +18,18 @@ const Login = () => {
       setIsLoggedIn(true);
     }
   }, []);
+
+  function clickHandler(e) {
+    navigate("/register");
+  }
+
   return (
     <div className="login">
       {!isLoggedIn && (
         <div>
           <LoginForm setIsLoggedIn={setIsLoggedIn} />
           <div className="login__register">
-            <Link to={"/"} className="login__register-button">
-              <button>Register</button>
-            </Link>
+            <button onClick={clickHandler}>Register</button>
           </div>
         </div>
       )}
