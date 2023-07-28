@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 5;
+  z-index: 999;
   &__logo img {
     width: 7rem;
   }
@@ -91,6 +91,7 @@
   top: 0;
   height: 100%;
   background-color: transparent;
+  border-left: 1px solid #02f9fe;
 }
 
 /* General sidebar styles */
