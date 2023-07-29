@@ -26,10 +26,12 @@ const Login = () => {
   return (
     <div className="login">
       {!isLoggedIn && (
-        <div>
+        <div className="login__container">
           <LoginForm setIsLoggedIn={setIsLoggedIn} />
-          <div className="login__register">
-            <button onClick={clickHandler}>Register</button>
+          <div className="login__container-register">
+            <button onClick={clickHandler} className="login__container-button">
+              Register
+            </button>
           </div>
         </div>
       )}

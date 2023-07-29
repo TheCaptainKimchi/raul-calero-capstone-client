@@ -1,3 +1,68 @@
 .login {
   padding-top: 10rem;
+  background-color: black;
+  height: 80vh;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #000220;
+    margin: 1.5rem;
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid #02f9fe;
+    animation: animate 3s ease-in-out infinite;
+    &-title {
+      color: white;
+    }
+    &-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1rem 0;
+      &-username,
+      &-password {
+        display: flex;
+        label {
+          color: white;
+          margin-right: 0.5rem;
+          width: 5rem;
+        }
+        input {
+          width: 8rem;
+        }
+      }
+      &-button {
+        width: 4rem;
+        margin-top: 1rem;
+        border: 0;
+        border-radius: 10px;
+        background-color: red;
+        height: 1.25rem;
+        color: white;
+      }
+    }
+    &-register button {
+      width: 5rem;
+      border: 0;
+      border-radius: 10px;
+      background-color: blue;
+      height: 1.25rem;
+      color: white;
+    }
+  }
+}
+
+@keyframes animate {
+  0% {
+    box-shadow: 0 0 10px 2px #02f9fe;
+  }
+
+  50% {
+    box-shadow: 0 0 20px 5px #02f9fe;
+  }
+
+  100% {
+    box-shadow: 0 0 10px 2px #02f9fe;
+  }
 }

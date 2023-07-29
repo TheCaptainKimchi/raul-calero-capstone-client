@@ -6,10 +6,13 @@ import "./Profile.scss";
 
 const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
   const [profileData, setProfileData] = useState(null);
-  const matchList = [];
-  const matchDataList = [];
   const [matchData, setMatchData] = useState(false);
+  const [lifetimeData, setLifetimeData] = useState([]);
   const renderedKeys = new Set();
+  const [kdaAverage, setKdaAverage] = useState(0);
+  const [kills, setKills] = useState(0);
+  const [deaths, setDeaths] = useState(0);
+  const [assists, setAssists] = useState(0);
 
   // When the isLoggedIn state changes, check if it's true and if so fetch the profile data
   useEffect(() => {
@@ -18,46 +21,68 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
     }
   }, [isLoggedIn]);
 
-  // With the auth token in session storage, we can now get the users details
+  // With the auth token in session storage, we can now get the user's details
   const fetchProfile = async () => {
     // Get the token from local storage
     const authToken = localStorage.getItem("authToken");
 
     try {
       // Do a GET request to the /profile endpoint to get the user's data
-      await axios
-        .get(`http://localhost:8080/profile`, {
-          headers: {
-            authorization: `Bearer ${authToken}`,
-          },
-        })
-        .then((response) => {
-          console.log(response.data);
-          // Update the profileData state with the received data
-          setProfileData(response.data);
+      const response = await axios.get(`http://localhost:8080/profile`, {
+        headers: {
+          authorization: `Bearer ${authToken}`,
+        },
+      });
 
-          const fetchData = async () => {
-            // Now that profileData is updated, we can make the second Axios request
-            const response2 = await axios.get(
-              `http://localhost:8080/matchId?puuid=${response.data.token.puuid}`
-            );
+      // Update the profileData state with the received data
+      setProfileData(response.data);
 
-            // Sort through response2 and store matchIds in a list
-            response2.data.map((matchId) => {
-              return matchList.push(matchId.matchId);
-            });
-            // Iterate through matchList to make calls to obtain each match data from array
-            for (let i = 0; i < 9 && i < matchList.length; i++) {
-              const response3 = await axios.get(
-                `http://localhost:8080/match?matchId=${matchList[i]}`
-              );
-              matchDataList.push(response3.data);
-            }
+      // Fetch lifetime data first
+      const lifetimeDataResponse = await axios.get(
+        `http://localhost:8080/leaderboard/${response.data.token.puuid}`
+      );
+      setLifetimeData(lifetimeDataResponse.data);
 
-            setMatchData(matchDataList);
-          };
-          fetchData();
-        });
+      let kdaSum = 0;
+      let totalKills = 0;
+      let totalDeaths = 0;
+      let totalAssists = 0;
+
+      // Calculate kdaSum and totalKills from lifetimeData
+      lifetimeDataResponse.data.forEach((data) => {
+        kdaSum += Number(data.kda);
+        totalKills += Number(data.kills);
+        totalDeaths += Number(data.deaths);
+        totalAssists += Number(data.assists);
+      });
+
+      // Calculate kdaAverage and update the state
+      const kdaAverageValue = kdaSum / lifetimeDataResponse.data.length;
+      setKdaAverage(kdaAverageValue);
+
+      // Update the kills state
+      setKills(totalKills);
+      setDeaths(totalDeaths);
+      setAssists(totalAssists);
+
+      // Now that lifetimeData is available, fetch match data
+      const matchIdResponse = await axios.get(
+        `http://localhost:8080/matchId?puuid=${response.data.token.puuid}`
+      );
+
+      // Sort through matchIdResponse and store matchIds in a list
+      const matchList = matchIdResponse.data.map((matchId) => matchId.matchId);
+
+      // Iterate through matchList to make calls to obtain each match data from array
+      const matchDataList = [];
+      for (let i = 0; i < 9 && i < matchList.length; i++) {
+        const response3 = await axios.get(
+          `http://localhost:8080/match?matchId=${matchList[i]}`
+        );
+        matchDataList.push(response3.data);
+      }
+
+      setMatchData(matchDataList);
     } catch (error) {
       setMatchData("Error");
       console.error("Error fetching data:", error);
@@ -90,16 +115,13 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
     <div className="profile">
       <div className="profile__top">
-        <h2>
-          Welcome {profileData.token.riotId} #{profileData.token.tagline}
+        <h2 className="profile__top-title">
+          Welcome {profileData.token.riotId}
         </h2>
         <button onClick={handleLogout}>Logout</button>
       </div>
       <div className="profile__bot">
-        <div className="profile__bot-left">
-          <p>Test</p>
-        </div>
-        <div className="profile__bot-right">
+        <div className="profile__bot-matches">
           {matchData.map((match) => {
             const key = match.matchInfo.matchId;
 
@@ -118,8 +140,6 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
                 ) === 0
               );
             });
-
-            console.log(`===== ${playerDetails.gameName} =====`);
 
             const kda =
               (playerDetails.stats.kills + playerDetails.stats.assists) /
@@ -172,7 +192,6 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
                 const response = await axios.post(
                   `http://localhost:8080/leaderboard?id=${matchInfo.id}&userName=${matchInfo.userName}&tagline=${matchInfo.tagline}&puuid=${matchInfo.puuid}&kills=${matchInfo.kills}&deaths=${matchInfo.deaths}&assists=${matchInfo.assists}&kda=${matchInfo.kda}&acs=${matchInfo.acs}&map=${matchInfo.map}&agent=${matchInfo.agent}&mode=${matchInfo.mode}`
                 );
-                console.log("Response data:", response.data);
 
                 return response.data;
               } catch (error) {
@@ -217,6 +236,15 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
               </div>
             );
           })}
+        </div>
+        <div className="profile__bot-lifetime">
+          <h3 className="profile__bot-lifetime-title">Lifetime Stats</h3>
+          <div className="profile__bot-lifetime-stats">
+            <p>Average KDA: {Math.round(kdaAverage * 10) / 10}</p>
+            <p>Kills: {kills}</p>
+            <p>Deaths: {deaths}</p>
+            <p>Assists: {assists}</p>
+          </div>
         </div>
       </div>
     </div>

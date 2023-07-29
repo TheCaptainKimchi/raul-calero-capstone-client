@@ -29,17 +29,17 @@ const LoginForm = ({ setIsLoggedIn }) => {
 
   return (
     <>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <h2 className="login__container-title">Login</h2>
+      <form onSubmit={handleSubmit} className="login__container-form">
+        <div className="login__container-form-username">
           <label htmlFor="loginUsername">Username</label>
           <input type="text" name="loginUsername" id="loginUsername" />
         </div>
-        <div>
+        <div className="login__container-form-password">
           <label htmlFor="loginPassword">Password</label>
           <input type="password" name="loginPassword" id="loginPassword" />
         </div>
-        <button>Login</button>
+        <button className="login__container-form-button">Login</button>
         {loginError && <p>{loginError}</p>}
       </form>
     </>
