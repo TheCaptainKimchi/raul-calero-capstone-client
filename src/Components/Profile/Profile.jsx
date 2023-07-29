@@ -24,6 +24,7 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
         },
       })
       .then((response) => {
+        console.log(response.data);
         setProfileData(response.data);
       })
       .catch((err) => {
@@ -41,12 +42,26 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
   };
 
   if (!profileData) {
-    return <p>Loading...</p>;
+    return (
+      <div>
+        <p>Loading...</p>
+        {setTimeout(
+          <p>
+            Error in loading profile. Please log-in again. Now redirecting to
+            login page.
+          </p>,
+          15000
+        )}
+        {setTimeout(handleLogout, 17000)}
+      </div>
+    );
   }
 
   return (
     <section>
-      <h2>Welcome {profileData.token.riotId}</h2>
+      <h2>
+        Welcome {profileData.token.riotId} #{profileData.token.tagline}
+      </h2>
       <p></p>
       <button onClick={handleLogout}>Logout</button>
     </section>

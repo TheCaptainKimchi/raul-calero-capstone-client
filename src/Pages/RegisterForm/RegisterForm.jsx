@@ -19,6 +19,7 @@ const RegisterForm = () => {
     const email = form.registerEmail.value;
     const password = form.registerPassword.value;
     const confirmPassword = form.confirmPassword.value;
+    let puuid = "";
 
     if (password !== confirmPassword) {
       setRegisterError("Passwords do not match");
@@ -27,8 +28,13 @@ const RegisterForm = () => {
     setRegisterError("");
 
     try {
+      const response = await axios.get(
+        `http://localhost:8080/puuid?userName=${riotId}&tagline=${tagline}`
+      );
+      puuid = response.data.puuid;
+
       await axios.post(
-        `http://localhost:8080/register?username=${username}&password=${password}&riotId=${riotId}&tagline=${tagline}&email=${email}`
+        `http://localhost:8080/register?username=${username}&password=${password}&riotId=${riotId}&tagline=${tagline}&email=${email}&puuid=${puuid}`
       );
 
       setRegisterSuccess(true);
