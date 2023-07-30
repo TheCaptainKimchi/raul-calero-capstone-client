@@ -12,6 +12,9 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
   const [kills, setKills] = useState(0);
   const [deaths, setDeaths] = useState(0);
   const [assists, setAssists] = useState(0);
+  const [totalMatches, setTotalMatches] = useState(0);
+  const [matchWins, setMatchWins] = useState(0);
+  const [matchLosses, setMatchLosses] = useState(0);
 
   // When the isLoggedIn state changes, check if it's true and if so fetch the profile data
   useEffect(() => {
@@ -46,6 +49,9 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
       let totalKills = 0;
       let totalDeaths = 0;
       let totalAssists = 0;
+      let totalMatches = 0;
+      let totalWins = 0;
+      let totalLosses = 0;
 
       // Calculate kdaSum and totalKills from lifetimeData
       lifetimeDataResponse.data.forEach((data) => {
@@ -53,7 +59,15 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
         totalKills += Number(data.kills);
         totalDeaths += Number(data.deaths);
         totalAssists += Number(data.assists);
+        totalMatches += 1;
+
+        if (data.matchOutcome === "Victory") {
+          totalWins += 1;
+        } else if (data.matchOutcome === "Defeat") {
+          totalLosses += 1;
+        }
       });
+      console.log(totalWins);
 
       // Calculate kdaAverage and update the state
       const kdaAverageValue = kdaSum / lifetimeDataResponse.data.length;
@@ -63,6 +77,10 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
       setKills(totalKills);
       setDeaths(totalDeaths);
       setAssists(totalAssists);
+
+      setTotalMatches(totalMatches);
+      setMatchWins(totalWins);
+      setMatchLosses(totalLosses);
 
       // Now that lifetimeData is available, fetch match data
       const matchIdResponse = await axios.get(
@@ -124,6 +142,7 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
         <div className="profile__bot-matches">
           {matchData.map((match) => {
             const key = match.matchInfo.matchId;
+            let matchOutcome = "";
 
             if (renderedKeys.has(key)) {
               return null;
@@ -172,6 +191,17 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
 
             renderedKeys.add(key);
 
+            match.teams.map((team) => {
+              if (playerDetails.teamId === team.teamId) {
+                if (team.won === true) {
+                  matchOutcome = "Victory";
+                }
+                if (team.won === false) {
+                  matchOutcome = "Defeat";
+                }
+              }
+            });
+
             const matchInfo = {
               id: key,
               userName: playerDetails.gameName,
@@ -185,12 +215,13 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
               map: map,
               agent: agent.name,
               mode: mode,
+              matchOutcome: matchOutcome,
             };
 
             async function postData() {
               try {
                 const response = await axios.post(
-                  `http://localhost:8080/leaderboard?id=${matchInfo.id}&userName=${matchInfo.userName}&tagline=${matchInfo.tagline}&puuid=${matchInfo.puuid}&kills=${matchInfo.kills}&deaths=${matchInfo.deaths}&assists=${matchInfo.assists}&kda=${matchInfo.kda}&acs=${matchInfo.acs}&map=${matchInfo.map}&agent=${matchInfo.agent}&mode=${matchInfo.mode}`
+                  `http://localhost:8080/leaderboard?id=${matchInfo.id}&userName=${matchInfo.userName}&tagline=${matchInfo.tagline}&puuid=${matchInfo.puuid}&kills=${matchInfo.kills}&deaths=${matchInfo.deaths}&assists=${matchInfo.assists}&kda=${matchInfo.kda}&acs=${matchInfo.acs}&map=${matchInfo.map}&agent=${matchInfo.agent}&mode=${matchInfo.mode}&matchOutcome=${matchOutcome}`
                 );
 
                 return response.data;
@@ -208,7 +239,15 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
             return (
               <div className={`match-container ${map}`} key={key}>
                 <div className={`match-container__header`}>
-                  <h3 className="match-container__header-mode">{mode}</h3>
+                  <div className="match-container__header-left">
+                    <h3 className="match-container__header-mode">{mode}</h3>
+                    <h3
+                      className={`match-container__header-outcome`}
+                      id={matchOutcome}
+                    >
+                      {matchOutcome}
+                    </h3>
+                  </div>
                   <h3 className="match-container__header-map">{map}</h3>
                 </div>
                 <table className="match-container__table">
@@ -240,6 +279,11 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
         <div className="profile__bot-lifetime">
           <h3 className="profile__bot-lifetime-title">Lifetime Stats</h3>
           <div className="profile__bot-lifetime-stats">
+            <div className="profile__bot-lifetime-stats-matches">
+              <p>W/L Rate: {Math.round((matchWins / matchLosses) * 10) / 10}</p>
+              <p>Total Wins: {matchWins}</p>
+              <p>Total Losses: {matchLosses}</p>
+            </div>
             <p>Average KDA: {Math.round(kdaAverage * 10) / 10}</p>
             <p>Kills: {kills}</p>
             <p>Deaths: {deaths}</p>

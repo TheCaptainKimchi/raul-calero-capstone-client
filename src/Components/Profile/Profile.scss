@@ -46,6 +46,21 @@
           padding: 1rem;
           background-color: rgba(0, 0, 0, 0.493);
           width: 80%;
+          &-left {
+            display: flex;
+            align-items: center;
+            width: 6rem;
+          }
+          &-outcome {
+            height: 2rem;
+            margin-left: 0.25rem;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+          }
+          &-mode {
+            font-size: 1rem;
+          }
           &-mode,
           &-map {
             color: white;
@@ -136,6 +151,7 @@
     &-lifetime {
       display: flex;
       align-items: center;
+      flex-direction: column;
       justify-content: space-evenly;
       border-top: 1px solid #02f9fe;
       border-bottom: 1px solid #02f9fe;
@@ -143,8 +159,25 @@
       padding: 1rem 0;
       h3 {
         color: white;
+        margin-bottom: 1rem;
       }
       &-stats {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &-matches {
+          display: flex;
+          text-align: center;
+          background-color: #000220;
+          border: 1px solid #02f9fe;
+          padding: 0.5rem;
+          border-radius: 10px;
+          margin-bottom: 1rem;
+          animation: pulsate 3s ease-in-out infinite;
+          p {
+            margin-right: 1rem;
+          }
+        }
         p {
           color: #02f9fe;
         }
@@ -242,4 +275,16 @@
   color: red;
   padding-top: 1rem;
   text-align: center;
+}
+
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 10px 5px rgba(219, 8, 8, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 10px 5px rgba(2, 249, 254, 0);
+  }
+  100% {
+    box-shadow: 0 0 10px 5px rgba(219, 8, 8, 0.5);
+  }
 }
