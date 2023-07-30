@@ -7,7 +7,6 @@ import "./Profile.scss";
 const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
   const [profileData, setProfileData] = useState(null);
   const [matchData, setMatchData] = useState(false);
-  const [lifetimeData, setLifetimeData] = useState([]);
   const renderedKeys = new Set();
   const [kdaAverage, setKdaAverage] = useState(0);
   const [kills, setKills] = useState(0);
@@ -19,6 +18,7 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
     if (isLoggedIn) {
       fetchProfile();
     }
+    // eslint-disable-next-line
   }, [isLoggedIn]);
 
   // With the auth token in session storage, we can now get the user's details
@@ -41,7 +41,6 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
       const lifetimeDataResponse = await axios.get(
         `http://localhost:8080/leaderboard/${response.data.token.puuid}`
       );
-      setLifetimeData(lifetimeDataResponse.data);
 
       let kdaSum = 0;
       let totalKills = 0;
@@ -115,9 +114,9 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
     <div className="profile">
       <div className="profile__top">
-        <h2 className="profile__top-title">
+        <h1 className="profile__top-title">
           Welcome {profileData.token.riotId}
-        </h2>
+        </h1>
         <button onClick={handleLogout}>Logout</button>
       </div>
       <div className="profile__bot">
@@ -196,7 +195,7 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
                 return response.data;
               } catch (error) {
                 if (
-                  error.response.data.error !=
+                  error.response.data.error !==
                   "Data with the same id already exists"
                 ) {
                   console.error("Error posting data:", error);

@@ -246,6 +246,7 @@
       height: 15vh;
       justify-content: center;
       border-radius: 20px;
+      padding: 2rem;
       &__header h3 {
         font-size: 1.5rem;
       }
@@ -260,7 +261,7 @@
       }
     }
   }
-  @include tablet {
+  @include desktop {
     &__top {
       height: 10vh;
     }
