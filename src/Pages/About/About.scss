@@ -12,8 +12,11 @@
 
 .about {
   background: black;
-  height: 140vh;
+  height: 180vh;
   padding-top: 15vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   &__project {
     display: flex;
     height: 20vh;
@@ -59,7 +62,7 @@
     margin: 1rem;
     padding: 1rem;
     border-top: 1px solid #02f9fe;
-    height: 110vh;
+    border-bottom: 1px solid #02f9fe;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -87,14 +90,18 @@
         color: white;
         margin-bottom: 1rem;
         text-align: left;
+        span {
+          font-weight: bold;
+          font-size: 1.25rem;
+        }
       }
     }
     &-connect {
       background-color: #000220;
       border-radius: 20px;
       display: flex;
-      height: 15%;
       width: 100%;
+      padding: 2rem 1rem;
       justify-content: space-evenly;
       align-items: center;
       margin-bottom: 2rem;
@@ -142,10 +149,11 @@
     }
   }
   @include tablet {
+    height: 140vh;
     &__project {
-      background-position: 20% 70%;
+      background-position: 10% 70%;
       background-size: 300px 200px;
-      margin: 3rem;
+      margin: 0;
       &-container {
         padding-right: 2rem;
         &-title {
@@ -157,7 +165,8 @@
       }
     }
     &__developer {
-      margin: 3rem;
+      margin: 5rem;
+      margin-bottom: 0;
       &-title {
         font-size: 2rem;
       }
@@ -168,11 +177,13 @@
         }
         &-text {
           font-size: 1.25rem;
+          span {
+            font-size: 1.5rem;
+          }
         }
       }
       &-connect {
         width: 80%;
-        margin-bottom: 5rem;
         margin-top: 3rem;
         &-title {
           font-size: 2rem;
@@ -185,18 +196,33 @@
     }
   }
   @include desktop {
-    height: 175vh;
+    height: 150vh;
     &__project {
-      margin: 5rem 10rem;
+      width: 100%;
+      background-position: 40% 50%;
       background-size: 30rem 15rem;
     }
     &__developer {
+      margin: 1rem 8rem;
+      &-title {
+        padding-top: 2rem;
+        font-size: 2.5rem;
+      }
+      &-me-text {
+        span {
+          font-size: 2rem;
+        }
+      }
       &-connect {
         width: 50rem;
         height: 15rem;
       }
     }
   }
+}
+
+.carousel {
+  margin-top: 3rem;
 }
 
 .carousel-item img {

@@ -20,7 +20,6 @@ const Results = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("first");
       try {
         // Axios call to get matchID
         const response1 = await axios
@@ -116,6 +115,7 @@ const Results = () => {
 
       {matchData.map((match) => {
         const key = match.matchInfo.matchId;
+        let matchOutcome = "";
 
         if (renderedKeys.has(key)) {
           return null;
@@ -128,8 +128,6 @@ const Results = () => {
             }) === 0
           );
         });
-
-        console.log(`===== ${playerDetails.gameName} =====`);
 
         const kda =
           (playerDetails.stats.kills + playerDetails.stats.assists) /
@@ -161,6 +159,19 @@ const Results = () => {
 
         renderedKeys.add(key);
 
+        match.teams.map((team) => {
+          if (playerDetails.teamId === team.teamId) {
+            if (team.won === true) {
+              matchOutcome = "Victory";
+            }
+            if (team.won === false) {
+              matchOutcome = "Defeat";
+            }
+          }
+        });
+
+        console.log(matchOutcome);
+
         const matchInfo = {
           id: key,
           userName: playerDetails.gameName,
@@ -174,14 +185,14 @@ const Results = () => {
           map: map,
           agent: agent.name,
           mode: mode,
+          matchOutcome: matchOutcome,
         };
 
         async function postData() {
           try {
             const response = await axios.post(
-              `http://localhost:8080/leaderboard?id=${matchInfo.id}&userName=${matchInfo.userName}&tagline=${matchInfo.tagline}&puuid=${matchInfo.puuid}&kills=${matchInfo.kills}&deaths=${matchInfo.deaths}&assists=${matchInfo.assists}&kda=${matchInfo.kda}&acs=${matchInfo.acs}&map=${matchInfo.map}&agent=${matchInfo.agent}&mode=${matchInfo.mode}`
+              `http://localhost:8080/leaderboard?id=${matchInfo.id}&userName=${matchInfo.userName}&tagline=${matchInfo.tagline}&puuid=${matchInfo.puuid}&kills=${matchInfo.kills}&deaths=${matchInfo.deaths}&assists=${matchInfo.assists}&kda=${matchInfo.kda}&acs=${matchInfo.acs}&map=${matchInfo.map}&agent=${matchInfo.agent}&mode=${matchInfo.mode}&matchOutcome=${matchInfo.matchOutcome}`
             );
-            console.log("Response data:", response.data);
 
             return response.data;
           } catch (error) {
@@ -198,7 +209,15 @@ const Results = () => {
         return (
           <div className={`match-container ${map}`} key={key}>
             <div className={`match-container__header`}>
-              <h3 className="match-container__header-mode">{mode}</h3>
+              <div className="match-container__header-left">
+                <h3 className="match-container__header-mode">{mode}</h3>
+                <h3
+                  className={`match-container__header-outcome`}
+                  id={matchOutcome}
+                >
+                  {matchOutcome}
+                </h3>
+              </div>
               <h3 className="match-container__header-map">{map}</h3>
             </div>
             <table className="match-container__table">

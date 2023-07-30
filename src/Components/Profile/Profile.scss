@@ -232,4 +232,14 @@
 .loading {
   color: white;
   padding-left: 1rem;
+  @include tablet {
+    padding-top: 2rem;
+    font-size: 2rem;
+  }
+}
+
+#error {
+  color: red;
+  padding-top: 1rem;
+  text-align: center;
 }

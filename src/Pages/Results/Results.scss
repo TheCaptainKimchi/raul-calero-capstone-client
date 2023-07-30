@@ -42,7 +42,7 @@
 }
 
 .results {
-  padding: 0 1rem 16.1rem 1rem;
+  padding: 0 1rem 21.5rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -140,6 +140,18 @@
       padding: 1rem;
       background-color: rgba(0, 0, 0, 0.493);
       width: 92%;
+      &-left {
+        display: flex;
+        align-items: center;
+      }
+      &-outcome {
+        display: flex;
+        align-items: center;
+        color: white;
+        margin: 0 1rem;
+        justify-content: center;
+        font-size: 1.25rem;
+      }
       &-mode,
       &-map {
         color: white;
@@ -285,4 +297,18 @@
       }
     }
   }
+}
+
+#Victory {
+  color: white;
+  background-color: green;
+  border-radius: 20px;
+  padding: 0 0.5rem;
+}
+
+#Defeat {
+  color: white;
+  background-color: red;
+  border-radius: 20px;
+  padding: 0 0.5rem;
 }

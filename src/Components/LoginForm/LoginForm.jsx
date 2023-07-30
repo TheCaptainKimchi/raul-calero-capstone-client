@@ -41,7 +41,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
           <input type="password" name="loginPassword" id="loginPassword" />
         </div>
         <button className="login__container-form-button">Login</button>
-        {loginError && <p>{loginError}</p>}
+        {loginError && <p id="error">{loginError}</p>}
       </form>
     </>
   );

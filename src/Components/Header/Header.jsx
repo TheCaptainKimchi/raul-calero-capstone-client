@@ -59,6 +59,7 @@ const Header = () => {
             <Link to={"/about"}>About</Link>
           </li>
         </ul>
+        {loginButton}
       </nav>
     </div>
   );
