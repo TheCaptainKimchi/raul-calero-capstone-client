@@ -1,37 +1,39 @@
 @use "../../Styles/Partials/resets";
 
 .hero {
-    width: 100vw;
-    height: 36vh;
-    background: url("../../Assets/Images/space-background.png") rgba(0, 0, 0, 0.177);
-    background-position: center;
-    background-size: cover;
-    background-blend-mode: multiply;
+  width: 100vw;
+  height: 36vh;
+  background: url("../../Assets/Images/space-background.png")
+    rgba(0, 0, 0, 0.177);
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: multiply;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  &__title {
+    margin-bottom: 1rem;
+  }
+  &__text {
+    margin-bottom: 0.5rem;
+  }
+  &__button {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    &__title {
-        margin-bottom: 1rem;
+    width: 6rem;
+    height: 1.5rem;
+    text-decoration: none;
+    button {
+      width: 100%;
+      border-radius: 20px;
+      border: 0;
+      background-color: red;
+      color: white;
     }
-    &__text {
-        margin-bottom: 0.5rem;
-    }
-    &__button {
-        display: flex;
-        width: 6rem;
-        height: 1.5rem;
-        text-decoration: none;
-        button {
-            width: 100%;
-            border-radius: 20px;
-            border: 0;
-            background-color: blue;
-            color: white;
-        }
-    }
-    &__title, &__text {
-        color: white;
-    }
+  }
+  &__title,
+  &__text {
+    color: white;
+  }
 }

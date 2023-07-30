@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   height: 80vh;
-  background: #373a47;
+  background: black;
   &__leaderboard {
     display: flex;
     flex-direction: column;
@@ -84,6 +84,7 @@
     height: 20vh;
     justify-content: flex-start;
     margin-top: 2.5rem;
+    animation: animate 5s ease-in-out infinite;
     &-title {
       margin: 1rem 0 1.5rem 0;
       color: white;
@@ -102,7 +103,7 @@
       width: 7rem;
       border-radius: 20px;
       border: 0;
-      background-color: blue;
+      background-color: red;
       color: white;
       margin-top: 0.5rem;
     }

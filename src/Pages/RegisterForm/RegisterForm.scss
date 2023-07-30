@@ -1,3 +1,121 @@
+@use "../../Styles/Partials/breakpoints" as *;
+
 .register {
   padding-top: 10rem;
+  background: black;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    background-color: #000220;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    animation: animate 5s ease-in-out infinite;
+    &-title {
+      color: white;
+      margin-bottom: 1rem;
+    }
+    &-username,
+    &-riot-id,
+    &-tagline,
+    &-email,
+    &-password,
+    &-confirm-password {
+      display: flex;
+      margin-bottom: 0.25rem;
+      label {
+        display: flex;
+        width: 9rem;
+        color: white;
+      }
+      input {
+        width: 9rem;
+        padding-left: 0.25rem;
+      }
+    }
+    button {
+      margin-top: 1.25rem;
+      width: 5rem;
+      background-color: red;
+      border: 0;
+      color: white;
+      border-radius: 10px;
+      height: 1.5rem;
+    }
+  }
+  @include tablet {
+    &__form {
+      height: 20rem;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      padding: 3rem;
+      &-title {
+        color: white;
+        margin-bottom: 1rem;
+        font-size: 2rem;
+      }
+      &-username,
+      &-riot-id,
+      &-tagline,
+      &-email,
+      &-password,
+      &-confirm-password {
+        display: flex;
+        margin-bottom: 0.25rem;
+        label {
+          display: flex;
+          width: 15rem;
+          color: white;
+          font-size: 1.25rem;
+        }
+        input {
+          width: 18rem;
+          padding-left: 0.25rem;
+        }
+      }
+      button {
+        font-size: 1.25rem;
+        height: 2rem;
+        width: 8rem;
+      }
+    }
+  }
+  @include desktop {
+    &__form {
+      height: 30rem;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      padding: 3rem 15rem;
+      &-title {
+        font-size: 2.5rem;
+      }
+      &-username,
+      &-riot-id,
+      &-tagline,
+      &-email,
+      &-password,
+      &-confirm-password {
+        label {
+          width: 15rem;
+          font-size: 1.5rem;
+        }
+        input {
+          width: 22rem;
+        }
+      }
+      button {
+        font-size: 1.5rem;
+        height: 2.25rem;
+        width: 8rem;
+      }
+    }
+  }
 }

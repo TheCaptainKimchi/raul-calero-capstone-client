@@ -50,25 +50,25 @@ const RegisterForm = () => {
 
   return (
     <div className="register">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="register__username">
+      <form onSubmit={handleSubmit} className="register__form">
+        <h2 className="register__form-title">Register</h2>
+        <div className="register__form-username">
           <label htmlFor="registerUsername">Username</label>
           <input type="text" name="registerUsername" id="registerUsername" />
         </div>
-        <div className="register__riot-id">
+        <div className="register__form-riot-id">
           <label htmlFor="registerRiotId">Riot Id</label>
           <input type="text" name="registerRiotId" id="registerRiotId" />
         </div>
-        <div className="register__tagline">
+        <div className="register__form-tagline">
           <label htmlFor="registerTagline">Tagline</label>
           <input type="text" name="registerTagline" id="registerTagline" />
         </div>
-        <div className="register__email">
+        <div className="register__form-email">
           <label htmlFor="registerEmail">Email</label>
           <input type="text" name="registerEmail" id="registerEmail" />
         </div>
-        <div className="register__password">
+        <div className="register__form-password">
           <label htmlFor="registerPassword">Password</label>
           <input
             type="password"
@@ -76,7 +76,7 @@ const RegisterForm = () => {
             id="registerPassword"
           />
         </div>
-        <div className="register__confirm-password">
+        <div className="register__form-confirm-password">
           <label htmlFor="confirmPassword">Confirm Password</label>
           <input type="password" name="confirmPassword" id="confirmPassword" />
         </div>

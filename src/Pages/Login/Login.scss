@@ -1,3 +1,5 @@
+@use "../../Styles/Partials/breakpoints" as *;
+
 .login {
   padding-top: 10rem;
   background-color: black;
@@ -26,6 +28,7 @@
         label {
           color: white;
           margin-right: 0.5rem;
+          margin-bottom: 0.5rem;
           width: 5rem;
         }
         input {
@@ -49,6 +52,53 @@
       background-color: blue;
       height: 1.25rem;
       color: white;
+    }
+  }
+  @include tablet {
+    &__container {
+      height: 30vh;
+      justify-content: center;
+      margin: 1.5rem 6rem;
+      &-title {
+        font-size: 2.5rem;
+      }
+      &-form {
+        width: 40rem;
+        &-username,
+        &-password {
+          label {
+            font-size: 1.5rem;
+            width: 10rem;
+          }
+          input {
+            width: 20rem;
+            height: 2rem;
+          }
+        }
+        &-button {
+          width: 8rem;
+          height: 2rem;
+          font-size: 1.25rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+      &-register {
+        button {
+          width: 8rem;
+          height: 2rem;
+          font-size: 1.25rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+  @include desktop {
+    &__container {
+      margin: 5rem 20rem;
     }
   }
 }
