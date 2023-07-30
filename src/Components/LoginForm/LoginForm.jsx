@@ -21,6 +21,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
         // Store the JWT token in session storage for future requests
         localStorage.setItem("authToken", response.data.token);
         setIsLoggedIn(true);
+        window.location.reload();
       })
       .catch((err) => {
         setLoginError(err.response.data.message);

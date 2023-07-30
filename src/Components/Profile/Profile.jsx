@@ -101,11 +101,12 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
     // Set the state to logged out
     setIsLoggedIn(false);
     setProfileData(null);
+    window.location.reload();
   };
 
   if (!matchData) {
     return (
-      <div>
+      <div className="loading">
         <p>Loading...</p>
       </div>
     );
