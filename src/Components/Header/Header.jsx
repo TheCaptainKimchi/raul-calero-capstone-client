@@ -17,6 +17,7 @@ const Header = () => {
 
   // State to render loginButton or see profile button
   const [loginButton, setLoginButton] = useState(
+    // eslint-disable-next-line
     <a id="login" onClick={clickHandler}>
       <button>Login</button>
     </a>
@@ -30,11 +31,13 @@ const Header = () => {
       setIsLoggedIn(true);
       // Change login button to view profile button
       setLoginButton(
+        // eslint-disable-next-line
         <a id="profile" onClick={clickHandler}>
           <button>View Profile</button>
         </a>
       );
     }
+    // eslint-disable-next-line
   }, [isLoggedIn]);
 
   // Render header component

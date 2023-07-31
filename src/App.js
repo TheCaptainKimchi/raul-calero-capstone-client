@@ -11,6 +11,7 @@ import Home from "./Pages/Home/Home";
 import About from "./Pages/About/About";
 import Login from "./Pages/Login/Login";
 import RegisterForm from "./Pages/RegisterForm/RegisterForm";
+import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
           <Route path="/feature/results" element={<Results />} />
           <Route path="/profile" element={<Login />} />
           <Route path="/register" element={<RegisterForm />} />
-          <Route path="*" />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>

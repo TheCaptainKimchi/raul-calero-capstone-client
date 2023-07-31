@@ -1,0 +1,22 @@
+.not-found {
+  background: black;
+  padding-top: 12rem;
+  padding-left: 3rem;
+  height: 75vh;
+  color: white;
+  &__text {
+    h1 {
+      margin-bottom: 1rem;
+    }
+    a {
+      text-decoration: none;
+      button {
+        padding: 0.25rem 0.5rem;
+        border: 0;
+        border-radius: 10px;
+        background-color: red;
+        color: white;
+      }
+    }
+  }
+}
