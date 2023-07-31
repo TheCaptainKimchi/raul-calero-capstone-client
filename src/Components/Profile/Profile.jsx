@@ -45,21 +45,17 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
           console.error(error);
         });
 
-      let kdaSum = 0;
       let totalKills = 0;
       let totalDeaths = 0;
       let totalAssists = 0;
-      let totalMatches = 0;
       let totalWins = 0;
       let totalLosses = 0;
 
       // Calculate kdaSum and totalKills from lifetimeData
       lifetimeDataResponse.data.forEach((data) => {
-        kdaSum += Number(data.kda);
         totalKills += Number(data.kills);
         totalDeaths += Number(data.deaths);
         totalAssists += Number(data.assists);
-        totalMatches += 1;
 
         if (data.matchOutcome === "Victory") {
           totalWins += 1;
@@ -185,6 +181,7 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
 
             renderedKeys.add(key);
 
+            // eslint-disable-next-line
             match.teams.map((team) => {
               if (playerDetails.teamId === team.teamId) {
                 if (team.won === true) {
