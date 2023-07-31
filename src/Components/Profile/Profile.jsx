@@ -41,46 +41,11 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
       setProfileData(response.data);
 
       // Fetch lifetime data first
-      const lifetimeDataResponse = await axios.get(
-        `http://localhost:8080/leaderboard/${response.data.token.puuid}`
-      );
-
-      let kdaSum = 0;
-      let totalKills = 0;
-      let totalDeaths = 0;
-      let totalAssists = 0;
-      let totalMatches = 0;
-      let totalWins = 0;
-      let totalLosses = 0;
-
-      // Calculate kdaSum and totalKills from lifetimeData
-      lifetimeDataResponse.data.forEach((data) => {
-        kdaSum += Number(data.kda);
-        totalKills += Number(data.kills);
-        totalDeaths += Number(data.deaths);
-        totalAssists += Number(data.assists);
-        totalMatches += 1;
-
-        if (data.matchOutcome === "Victory") {
-          totalWins += 1;
-        } else if (data.matchOutcome === "Defeat") {
-          totalLosses += 1;
-        }
-      });
-      console.log(totalWins);
-
-      // Calculate kdaAverage and update the state
-      const kdaAverageValue = kdaSum / lifetimeDataResponse.data.length;
-      setKdaAverage(kdaAverageValue);
-
-      // Update the kills state
-      setKills(totalKills);
-      setDeaths(totalDeaths);
-      setAssists(totalAssists);
-
-      setTotalMatches(totalMatches);
-      setMatchWins(totalWins);
-      setMatchLosses(totalLosses);
+      const lifetimeDataResponse = await axios
+        .get(`http://localhost:8080/leaderboard/${response.data.token.puuid}`)
+        .catch((error) => {
+          console.error(error);
+        });
 
       // Now that lifetimeData is available, fetch match data
       const matchIdResponse = await axios.get(
