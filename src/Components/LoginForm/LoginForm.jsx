@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const LoginForm = ({ setIsLoggedIn }) => {
+  const baseUrl = process.env.REACT_APP_API_BASE_URL;
   const [loginError, setLoginError] = useState("");
 
   const handleSubmit = (e) => {
@@ -14,9 +15,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
 
     // Do a POST request to the /login endpoint using username and password from the form
     axios
-      .post(
-        `http://localhost:8080/login?username=${username}&password=${password}`
-      )
+      .post(`${baseUrl}login?username=${username}&password=${password}`)
       .then((response) => {
         // Store the JWT token in session storage for future requests
         localStorage.setItem("authToken", response.data.token);

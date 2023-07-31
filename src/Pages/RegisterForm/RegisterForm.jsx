@@ -6,10 +6,10 @@ import maps from "../../Data/Maps.json";
 import agents from "../../Data/Agents.json";
 
 const RegisterForm = () => {
+  const baseUrl = process.env.REACT_APP_API_BASE_URL;
   const navigate = useNavigate();
   const [registerError, setRegisterError] = useState("");
   const [registerSuccess, setRegisterSuccess] = useState(false);
-  const matchDetails = [];
   const renderedKeys = new Set();
 
   const handleSubmit = async (e) => {
@@ -35,25 +35,21 @@ const RegisterForm = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:8080/puuid?userName=${riotId}&tagline=${tagline}`
+        `${baseUrl}puuid?userName=${riotId}&tagline=${tagline}`
       );
       puuid = response.data.puuid;
       newUsername = response.data.gameName;
       newTagline = response.data.tagLine;
 
       await axios.post(
-        `http://localhost:8080/register?username=${username}&password=${password}&riotId=${newUsername}&tagline=${newTagline}&email=${email}&puuid=${puuid}`
+        `${baseUrl}register?username=${username}&password=${password}&riotId=${newUsername}&tagline=${newTagline}&email=${email}&puuid=${puuid}`
       );
 
-      const response2 = await axios.get(
-        `http://localhost:8080/matchId?puuid=${puuid}`
-      );
+      const response2 = await axios.get(`${baseUrl}matchId?puuid=${puuid}`);
 
       // Create an array to store all the axios requests for match data
       const matchRequests = response2.data.map((match) => {
-        return axios.get(
-          `http://localhost:8080/match?matchId=${match.matchId}`
-        );
+        return axios.get(`${baseUrl}match?matchId=${match.matchId}`);
       });
 
       // Wait for all the match data requests to complete
@@ -63,7 +59,8 @@ const RegisterForm = () => {
       const matchDetails = matchResponses.map((response) => response.data);
 
       // Now you can perform the map operation on matchDetails
-      const matchMap = matchDetails.map((match) => {
+      // eslint-disable-next-line
+      matchDetails.map((match) => {
         const key = match.matchInfo.matchId;
         let matchOutcome = "";
 
@@ -109,6 +106,7 @@ const RegisterForm = () => {
 
         renderedKeys.add(key);
 
+        // eslint-disable-next-line
         match.teams.map((team) => {
           if (playerDetails.teamId === team.teamId) {
             if (team.won === true) {
@@ -138,13 +136,13 @@ const RegisterForm = () => {
         async function postData() {
           try {
             const response = await axios.post(
-              `http://localhost:8080/leaderboard?id=${matchInfo.id}&userName=${matchInfo.userName}&tagline=${matchInfo.tagline}&puuid=${matchInfo.puuid}&kills=${matchInfo.kills}&deaths=${matchInfo.deaths}&assists=${matchInfo.assists}&kda=${matchInfo.kda}&acs=${matchInfo.acs}&map=${matchInfo.map}&agent=${matchInfo.agent}&mode=${matchInfo.mode}&matchOutcome=${matchInfo.matchOutcome}`
+              `${baseUrl}leaderboard?id=${matchInfo.id}&userName=${matchInfo.userName}&tagline=${matchInfo.tagline}&puuid=${matchInfo.puuid}&kills=${matchInfo.kills}&deaths=${matchInfo.deaths}&assists=${matchInfo.assists}&kda=${matchInfo.kda}&acs=${matchInfo.acs}&map=${matchInfo.map}&agent=${matchInfo.agent}&mode=${matchInfo.mode}&matchOutcome=${matchInfo.matchOutcome}`
             );
 
             return response.data;
           } catch (error) {
             if (
-              error.response.data.error !=
+              error.response.data.error !==
               "Data with the same id already exists"
             ) {
               console.error("Error posting data:", error);

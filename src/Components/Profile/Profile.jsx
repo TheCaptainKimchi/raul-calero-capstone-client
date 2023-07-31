@@ -5,6 +5,7 @@ import agents from "../../Data/Agents.json";
 import "./Profile.scss";
 
 const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
+  const baseUrl = process.env.REACT_APP_API_BASE_URL;
   const [profileData, setProfileData] = useState(null);
   const [matchData, setMatchData] = useState(false);
   const renderedKeys = new Set();
@@ -29,7 +30,7 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
 
     try {
       // Do a GET request to the /profile endpoint to get the user's data
-      const response = await axios.get(`http://localhost:8080/profile`, {
+      const response = await axios.get(`${baseUrl}profile`, {
         headers: {
           authorization: `Bearer ${authToken}`,
         },
@@ -40,7 +41,7 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
 
       // Fetch lifetime data first
       const lifetimeDataResponse = await axios
-        .get(`http://localhost:8080/leaderboard/${response.data.token.puuid}`)
+        .get(`${baseUrl}leaderboard/${response.data.token.puuid}`)
         .catch((error) => {
           console.error(error);
         });
@@ -74,7 +75,7 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
 
       // Now that lifetimeData is available, fetch match data
       const matchIdResponse = await axios.get(
-        `http://localhost:8080/matchId?puuid=${response.data.token.puuid}`
+        `${baseUrl}matchId?puuid=${response.data.token.puuid}`
       );
 
       // Sort through matchIdResponse and store matchIds in a list
@@ -84,7 +85,7 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
       const matchDataList = [];
       for (let i = 0; i < 9 && i < matchList.length; i++) {
         const response3 = await axios.get(
-          `http://localhost:8080/match?matchId=${matchList[i]}`
+          `${baseUrl}match?matchId=${matchList[i]}`
         );
         matchDataList.push(response3.data);
       }
@@ -212,7 +213,7 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
             async function postData() {
               try {
                 const response = await axios.post(
-                  `http://localhost:8080/leaderboard?id=${matchInfo.id}&userName=${matchInfo.userName}&tagline=${matchInfo.tagline}&puuid=${matchInfo.puuid}&kills=${matchInfo.kills}&deaths=${matchInfo.deaths}&assists=${matchInfo.assists}&kda=${matchInfo.kda}&acs=${matchInfo.acs}&map=${matchInfo.map}&agent=${matchInfo.agent}&mode=${matchInfo.mode}&matchOutcome=${matchOutcome}`
+                  `${baseUrl}leaderboard?id=${matchInfo.id}&userName=${matchInfo.userName}&tagline=${matchInfo.tagline}&puuid=${matchInfo.puuid}&kills=${matchInfo.kills}&deaths=${matchInfo.deaths}&assists=${matchInfo.assists}&kda=${matchInfo.kda}&acs=${matchInfo.acs}&map=${matchInfo.map}&agent=${matchInfo.agent}&mode=${matchInfo.mode}&matchOutcome=${matchOutcome}`
                 );
 
                 return response.data;

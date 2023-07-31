@@ -4,9 +4,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Feature = () => {
+  const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
   // useNavigate
   const navigate = useNavigate();
-  const [leaderboard, setLeaderboard] = useState();
+  const [leaderboard, setLeaderboard] = useState(false);
 
   // Capture form data on submit
   function submitHandler(e) {
@@ -24,7 +26,7 @@ const Feature = () => {
     const tag = data.tagline;
 
     axios
-      .get(`http://localhost:8080/puuid?userName=${name}&tagline=${tag}`)
+      .get(`${baseUrl}puuid?userName=${name}&tagline=${tag}`)
       .then((response) => {
         const puuid = response.data.puuid;
         const userName = response.data.gameName;
@@ -45,13 +47,14 @@ const Feature = () => {
   // Get leaderboard data
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/leaderboard`)
+      .get(`${baseUrl}leaderboard`)
       .then((response) => {
         setLeaderboard(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
+    // eslint-disable-next-line
   }, []);
 
   if (!leaderboard) {
@@ -95,8 +98,6 @@ const Feature = () => {
     );
   }
 
-  const roundedKda = Number(leaderboard.bestKda.kda.toFixed(1));
-
   return (
     <div className="feature">
       <div className="leaderboard-wrapper">
@@ -107,7 +108,7 @@ const Feature = () => {
               <h3>MVP</h3>
               <div>
                 <p>{leaderboard.bestKda.name}</p>
-                <p>{`KDA: ${roundedKda}`}</p>
+                <p>{`KDA: ${Number(leaderboard.bestKda.kda.toFixed(1))}`}</p>
               </div>
             </div>
             <div className="feature__leaderboard-container-list">

@@ -7,6 +7,7 @@ import maps from "../../Data/Maps.json";
 import agents from "../../Data/Agents.json";
 
 const Results = () => {
+  const baseUrl = process.env.REACT_APP_API_BASE_URL;
   const location = useLocation();
   const matchList = [];
   const matchDataList = [];
@@ -23,7 +24,7 @@ const Results = () => {
       try {
         // Axios call to get matchID
         const response1 = await axios
-          .get(`http://localhost:8080/matchId?puuid=${puuid}`)
+          .get(`${baseUrl}matchId?puuid=${puuid}`)
           .catch((error) => {
             console.error(error.response);
           });
@@ -36,7 +37,7 @@ const Results = () => {
         // Iterate through matchList to make calls to obtain each match data from array
         for (let i = 0; i < 9 && i < matchList.length; i++) {
           const response2 = await axios.get(
-            `http://localhost:8080/match?matchId=${matchList[i]}`
+            `${baseUrl}match?matchId=${matchList[i]}`
           );
           matchDataList.push(response2.data);
         }
@@ -66,7 +67,7 @@ const Results = () => {
           <Link className="results__top-return" to={"/feature"}>
             <img
               className="results__top-return-image"
-              src="http://localhost:8080/icons/chevron-left.svg"
+              src={`${baseUrl}icons/chevron-left.svg`}
               alt="return-icon"
             ></img>
             <h3 className="results__top-return-text">Search Again</h3>
@@ -85,7 +86,7 @@ const Results = () => {
           <Link className="results__top-return" to={"/feature"}>
             <img
               className="results__top-return-image"
-              src="http://localhost:8080/icons/chevron-left.svg"
+              src={`${baseUrl}icons/chevron-left.svg`}
               alt="return-icon"
             ></img>
             <h3 className="results__top-return-text">Search Again</h3>
@@ -105,7 +106,7 @@ const Results = () => {
         <Link className="results__top-return" to={"/feature"}>
           <img
             className="results__top-return-image"
-            src="http://localhost:8080/icons/chevron-left.svg"
+            src={`${baseUrl}icons/chevron-left.svg`}
             alt="return-icon"
           ></img>
           <h3 className="results__top-return-text">Search Again</h3>
@@ -159,6 +160,7 @@ const Results = () => {
 
         renderedKeys.add(key);
 
+        // eslint-disable-next-line
         match.teams.map((team) => {
           if (playerDetails.teamId === team.teamId) {
             if (team.won === true) {
@@ -189,13 +191,13 @@ const Results = () => {
         async function postData() {
           try {
             const response = await axios.post(
-              `http://localhost:8080/leaderboard?id=${matchInfo.id}&userName=${matchInfo.userName}&tagline=${matchInfo.tagline}&puuid=${matchInfo.puuid}&kills=${matchInfo.kills}&deaths=${matchInfo.deaths}&assists=${matchInfo.assists}&kda=${matchInfo.kda}&acs=${matchInfo.acs}&map=${matchInfo.map}&agent=${matchInfo.agent}&mode=${matchInfo.mode}&matchOutcome=${matchInfo.matchOutcome}`
+              `${baseUrl}leaderboard?id=${matchInfo.id}&userName=${matchInfo.userName}&tagline=${matchInfo.tagline}&puuid=${matchInfo.puuid}&kills=${matchInfo.kills}&deaths=${matchInfo.deaths}&assists=${matchInfo.assists}&kda=${matchInfo.kda}&acs=${matchInfo.acs}&map=${matchInfo.map}&agent=${matchInfo.agent}&mode=${matchInfo.mode}&matchOutcome=${matchInfo.matchOutcome}`
             );
 
             return response.data;
           } catch (error) {
             if (
-              error.response.data.error !=
+              error.response.data.error !==
               "Data with the same id already exists"
             ) {
               console.error("Error posting data:", error);
