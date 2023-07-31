@@ -1,7 +1,9 @@
+// Imports
 import { Link } from "react-router-dom";
 import "./FeaturePromo.scss";
 
 const FeaturePromo = () => {
+  // Render Promo component
   return (
     <div className="promo">
       <div className="promo__image"></div>
