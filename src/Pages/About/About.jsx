@@ -1,3 +1,4 @@
+// Imports
 import { Link } from "react-router-dom";
 import "./About.scss";
 import Carousel from "react-bootstrap/Carousel";
@@ -6,13 +7,10 @@ import weatherImage from "../../Assets/Images/weather.png";
 import qlc from "../../Assets/Images/qlc.jpg";
 
 const About = () => {
-  const test =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore doloribus assumenda labore numquam! Eos molestias, praesentium reiciendis error aperiam ipsam fugit vero eaque veritatis atque aut eligendi dolorum illo facere?";
-
-  console.log(test.length);
-
+  // Render about page
   return (
     <div className="about">
+      {/* Details on previous project */}
       <div className="about__project">
         <div className="about__project-container">
           <h3 className="about__project-container-title">About The Project</h3>
@@ -27,6 +25,7 @@ const About = () => {
           </Link>
         </div>
       </div>
+      {/* Details on developer (me :) ) */}
       <div className="about__developer">
         <h2 className="about__developer-title">About The Developer</h2>
         <div className="about__developer-me">
@@ -65,6 +64,7 @@ const About = () => {
           </div>
         </div>
       </div>
+      {/* Details on past projects */}
       <Carousel className="carousel">
         <Carousel.Item>
           <img

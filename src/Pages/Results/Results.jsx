@@ -1,4 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+
+// Imports
 import "./Results.scss";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -7,11 +9,15 @@ import maps from "../../Data/Maps.json";
 import agents from "../../Data/Agents.json";
 
 const Results = () => {
+  // Capture baseurl from .env
   const baseUrl = process.env.REACT_APP_API_BASE_URL;
   const location = useLocation();
+
+  // States/variables to store match list and data
   const matchList = [];
   const matchDataList = [];
   const [matchData, setMatchData] = useState();
+  // Store keys to prevent duplicates
   const renderedKeys = new Set();
 
   // Access the data from the state object
@@ -19,6 +25,7 @@ const Results = () => {
   const userName = location.state?.userName || {};
   const tagline = location.state?.tagline || {};
 
+  // Use effect to make calls to capture match Ids and match details
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -51,6 +58,7 @@ const Results = () => {
     fetchData();
   }, []);
 
+  // Load skeleton page before matchData is stored
   if (!matchData) {
     return (
       <div className="results-loading">
@@ -79,6 +87,8 @@ const Results = () => {
         </div>
       </div>
     );
+
+    // If no matches found, then load text indicating user to play matches
   } else if (matchData === "Error") {
     return (
       <div className="no-results">
@@ -101,7 +111,9 @@ const Results = () => {
   }
 
   return (
+    // Render reults page
     <div className="results">
+      {/* Render user searched and button to search again */}
       <div className="results__top">
         <Link className="results__top-return" to={"/feature"}>
           <img
@@ -114,6 +126,7 @@ const Results = () => {
         <h2 className="results__top-user">{`${userName}#${tagline}`}</h2>
       </div>
 
+      {/* Render list of recent matches */}
       {matchData.map((match) => {
         const key = match.matchInfo.matchId;
         let matchOutcome = "";

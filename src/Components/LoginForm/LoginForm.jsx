@@ -1,15 +1,18 @@
+// Imports
 import { useState } from "react";
 import axios from "axios";
 
 const LoginForm = ({ setIsLoggedIn }) => {
+  // Load baseUrl from .env file
   const baseUrl = process.env.REACT_APP_API_BASE_URL;
+  // Store any login errors to display on page
   const [loginError, setLoginError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Capture form values
     const form = e.target;
-
     const username = form.loginUsername.value;
     const password = form.loginPassword.value;
 
@@ -28,6 +31,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
   };
 
   return (
+    // Render login form
     <>
       <h2 className="login__container-title">Login</h2>
       <form onSubmit={handleSubmit} className="login__container-form">

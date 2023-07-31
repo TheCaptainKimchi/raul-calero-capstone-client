@@ -1,7 +1,9 @@
+// Imports
 import "./Hero.scss";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
+  // Render hero component
   return (
     <div className="hero">
       <h1 className="hero__title">SparkGG</h1>

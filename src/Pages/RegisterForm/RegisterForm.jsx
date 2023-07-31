@@ -1,3 +1,4 @@
+// Imports
 import axios from "axios";
 import { useState } from "react";
 import "./RegisterForm.scss";
@@ -6,27 +7,35 @@ import maps from "../../Data/Maps.json";
 import agents from "../../Data/Agents.json";
 
 const RegisterForm = () => {
+  // Store BaseURL from .env file
   const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
   const navigate = useNavigate();
+  // States to store register success and error
   const [registerError, setRegisterError] = useState("");
   const [registerSuccess, setRegisterSuccess] = useState(false);
+
+  // Store keys to prevent duplicates
   const renderedKeys = new Set();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Capture values from form submit
     const form = e.target;
-
     const username = form.registerUsername.value;
     const riotId = form.registerRiotId.value;
     const tagline = form.registerTagline.value;
     const email = form.registerEmail.value;
     const password = form.registerPassword.value;
     const confirmPassword = form.confirmPassword.value;
+
+    // Variables to store puuid, riotId, and tagline from axios calls
     let puuid = "";
     let newUsername = "";
     let newTagline = "";
 
+    // Check if password is correct
     if (password !== confirmPassword) {
       setRegisterError("Passwords do not match");
     }
@@ -34,17 +43,21 @@ const RegisterForm = () => {
     setRegisterError("");
 
     try {
+      // Axios call to get puuid
       const response = await axios.get(
         `${baseUrl}puuid?userName=${riotId}&tagline=${tagline}`
       );
+      // Update puuid, newUsername, and newTagline with captured data
       puuid = response.data.puuid;
       newUsername = response.data.gameName;
       newTagline = response.data.tagLine;
 
+      // Store user account on to server
       await axios.post(
         `${baseUrl}register?username=${username}&password=${password}&riotId=${newUsername}&tagline=${newTagline}&email=${email}&puuid=${puuid}`
       );
 
+      // Get matchIds for user
       const response2 = await axios.get(`${baseUrl}matchId?puuid=${puuid}`);
 
       // Create an array to store all the axios requests for match data
@@ -58,16 +71,19 @@ const RegisterForm = () => {
       // Extract the data from each response and store it in matchDetails
       const matchDetails = matchResponses.map((response) => response.data);
 
-      // Now you can perform the map operation on matchDetails
+      // Map through match ids to capture match data
       // eslint-disable-next-line
       matchDetails.map((match) => {
         const key = match.matchInfo.matchId;
+        // Variable for match results
         let matchOutcome = "";
 
+        // Check if match details have already been rendered
         if (renderedKeys.has(key)) {
           return null;
         }
 
+        // Sort through list of players in match and store user's specific match details
         const playerDetails = match.players.find((player) => {
           return (
             player.gameName.localeCompare(newUsername, undefined, {
@@ -76,16 +92,20 @@ const RegisterForm = () => {
           );
         });
 
+        // Calculate kda
         const kda =
           (playerDetails.stats.kills + playerDetails.stats.assists) /
           playerDetails.stats.deaths;
 
+        // Calculate ACS
         const acs = playerDetails.stats.score / match.roundResults.length - 1;
 
+        // Sort through list of maps to discover which map the match was played on
         const map = maps.find(
           (map) => map.assetPath === match.matchInfo.mapId
         )?.name;
 
+        // Sort through list of agents to find which agent the user played
         const agent = agents.find((agent) => {
           const agentSearch = agent.id.toLowerCase();
           const agentPlayed = playerDetails.characterId.toLowerCase();
@@ -93,6 +113,7 @@ const RegisterForm = () => {
           return agentSearch === agentPlayed;
         });
 
+        // Sort through non-conventional game modes and re-format them to conventional names
         let mode = "";
         if (match.matchInfo.queueId === "ggteam") {
           mode = "escalation";
@@ -106,6 +127,7 @@ const RegisterForm = () => {
 
         renderedKeys.add(key);
 
+        // Calculate if player won or lost match
         // eslint-disable-next-line
         match.teams.map((team) => {
           if (playerDetails.teamId === team.teamId) {
@@ -118,6 +140,7 @@ const RegisterForm = () => {
           }
         });
 
+        // Store match details specific to player in an object
         const matchInfo = {
           id: key,
           userName: playerDetails.gameName,
@@ -133,6 +156,7 @@ const RegisterForm = () => {
           mode: mode,
           matchOutcome: matchOutcome,
         };
+        // Post match details object to database in to /leaderboard
         async function postData() {
           try {
             const response = await axios.post(
@@ -164,6 +188,7 @@ const RegisterForm = () => {
   };
 
   return (
+    // Render register page
     <div className="register">
       <form onSubmit={handleSubmit} className="register__form">
         <h2 className="register__form-title">Register</h2>

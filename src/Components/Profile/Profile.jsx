@@ -1,3 +1,4 @@
+// Imports
 import { useState, useEffect } from "react";
 import axios from "axios";
 import maps from "../../Data/Maps.json";
@@ -5,15 +6,20 @@ import agents from "../../Data/Agents.json";
 import "./Profile.scss";
 
 const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
+  // Load baseUrl from .env file
   const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
+  // Store datasets in to states
   const [profileData, setProfileData] = useState(null);
   const [matchData, setMatchData] = useState(false);
-  const renderedKeys = new Set();
   const [kills, setKills] = useState(0);
   const [deaths, setDeaths] = useState(0);
   const [assists, setAssists] = useState(0);
   const [matchWins, setMatchWins] = useState(0);
   const [matchLosses, setMatchLosses] = useState(0);
+
+  // Store key list to avoid potential duplicates
+  const renderedKeys = new Set();
 
   // When the isLoggedIn state changes, check if it's true and if so fetch the profile data
   useEffect(() => {
@@ -46,13 +52,14 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
           console.error(error);
         });
 
+      // Data values to assist in calculating total amounts
       let totalKills = 0;
       let totalDeaths = 0;
       let totalAssists = 0;
       let totalWins = 0;
       let totalLosses = 0;
 
-      // Calculate kdaSum and totalKills from lifetimeData
+      // Calculate totals
       lifetimeDataResponse.data.forEach((data) => {
         totalKills += Number(data.kills);
         totalDeaths += Number(data.deaths);
@@ -65,15 +72,14 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
         }
       });
 
-      // Update the kills state
+      // Update the total states
       setKills(totalKills);
       setDeaths(totalDeaths);
       setAssists(totalAssists);
-
       setMatchWins(totalWins);
       setMatchLosses(totalLosses);
 
-      // Now that lifetimeData is available, fetch match data
+      // Fetch match data
       const matchIdResponse = await axios.get(
         `${baseUrl}matchId?puuid=${response.data.token.puuid}`
       );
@@ -103,6 +109,7 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
     }
   };
 
+  // Run function to remove authtoken once user clicks to log-out
   const handleLogout = () => {
     // Unset the local storage auth token
     localStorage.removeItem("authToken");
@@ -113,6 +120,7 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
     window.location.reload();
   };
 
+  // If matchData is set to false, render loading text
   if (!matchData) {
     return (
       <div className="loading">
@@ -122,14 +130,19 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
   }
 
   return (
+    // Render profile component
     <div className="profile">
+      {/* Display username and option to logout */}
       <div className="profile__top">
         <h1 className="profile__top-title">
           Welcome {profileData.token.riotId}
         </h1>
         <button onClick={handleLogout}>Logout</button>
       </div>
+
+      {/* Display user stats */}
       <div className="profile__bot">
+        {/* Display recent match stats */}
         <div className="profile__bot-matches">
           {matchData.map((match) => {
             const key = match.matchInfo.matchId;
@@ -268,6 +281,8 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
             );
           })}
         </div>
+
+        {/* Display stored lifetime stats */}
         <div className="profile__bot-lifetime">
           <h3 className="profile__bot-lifetime-title">Lifetime Stats</h3>
           <div className="profile__bot-lifetime-stats">

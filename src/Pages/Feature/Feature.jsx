@@ -1,13 +1,16 @@
+// Imports
 import "./Feature.scss";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Feature = () => {
+  // Call baseURL from .env
   const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
-  // useNavigate
   const navigate = useNavigate();
+
+  // Store leaderboard data
   const [leaderboard, setLeaderboard] = useState(false);
 
   // Capture form data on submit
@@ -17,6 +20,7 @@ const Feature = () => {
       username: e.target.username.value,
       tagline: e.target.tagline.value,
     };
+    // Execute getPUUID function to get puuid
     getPuuid(data);
   }
 
@@ -57,6 +61,7 @@ const Feature = () => {
     // eslint-disable-next-line
   }, []);
 
+  // If no leaderboard data loaded yet, render skeleton
   if (!leaderboard) {
     return (
       <div className="loading">
@@ -99,8 +104,10 @@ const Feature = () => {
   }
 
   return (
+    // Render feature page
     <div className="feature">
       <div className="leaderboard-wrapper">
+        {/* Render leaderboard stats */}
         <div className="feature__leaderboard">
           <h2 className="feature__leaderboard-title">Leaderboard</h2>
           <div className="feature__leaderboard-container">
@@ -131,6 +138,7 @@ const Feature = () => {
           </div>
         </div>
       </div>
+      {/* Render form to search matches for a player */}
       <form className="feature__form" onSubmit={submitHandler}>
         <h2 className="feature__form-title">SEARCH PLAYER</h2>
         <div className="feature__form-input">
