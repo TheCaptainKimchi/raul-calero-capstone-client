@@ -170,8 +170,6 @@ const Results = () => {
           }
         });
 
-        console.log(matchOutcome);
-
         const matchInfo = {
           id: key,
           userName: playerDetails.gameName,

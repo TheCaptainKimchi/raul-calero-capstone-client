@@ -50,6 +50,7 @@
     }
   }
   @include tablet {
+    padding-top: 12rem;
     &__form {
       height: 20rem;
       justify-content: center;

@@ -47,6 +47,42 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
           console.error(error);
         });
 
+      let kdaSum = 0;
+      let totalKills = 0;
+      let totalDeaths = 0;
+      let totalAssists = 0;
+      let totalMatches = 0;
+      let totalWins = 0;
+      let totalLosses = 0;
+
+      // Calculate kdaSum and totalKills from lifetimeData
+      lifetimeDataResponse.data.forEach((data) => {
+        kdaSum += Number(data.kda);
+        totalKills += Number(data.kills);
+        totalDeaths += Number(data.deaths);
+        totalAssists += Number(data.assists);
+        totalMatches += 1;
+
+        if (data.matchOutcome === "Victory") {
+          totalWins += 1;
+        } else if (data.matchOutcome === "Defeat") {
+          totalLosses += 1;
+        }
+      });
+
+      // Calculate kdaAverage and update the state
+      const kdaAverageValue = kdaSum / lifetimeDataResponse.data.length;
+      setKdaAverage(kdaAverageValue);
+
+      // Update the kills state
+      setKills(totalKills);
+      setDeaths(totalDeaths);
+      setAssists(totalAssists);
+
+      setTotalMatches(totalMatches);
+      setMatchWins(totalWins);
+      setMatchLosses(totalLosses);
+
       // Now that lifetimeData is available, fetch match data
       const matchIdResponse = await axios.get(
         `http://localhost:8080/matchId?puuid=${response.data.token.puuid}`
@@ -249,7 +285,9 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
               <p>Total Wins: {matchWins}</p>
               <p>Total Losses: {matchLosses}</p>
             </div>
-            <p>Average KDA: {Math.round(kdaAverage * 10) / 10}</p>
+            <p>
+              Average KDA: {Math.round(((kills + assists) / deaths) * 10) / 10}
+            </p>
             <p>Kills: {kills}</p>
             <p>Deaths: {deaths}</p>
             <p>Assists: {assists}</p>
