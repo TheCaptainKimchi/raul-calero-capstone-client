@@ -8,11 +8,9 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
   const [profileData, setProfileData] = useState(null);
   const [matchData, setMatchData] = useState(false);
   const renderedKeys = new Set();
-  const [kdaAverage, setKdaAverage] = useState(0);
   const [kills, setKills] = useState(0);
   const [deaths, setDeaths] = useState(0);
   const [assists, setAssists] = useState(0);
-  const [totalMatches, setTotalMatches] = useState(0);
   const [matchWins, setMatchWins] = useState(0);
   const [matchLosses, setMatchLosses] = useState(0);
 
@@ -70,16 +68,11 @@ const Profile = ({ isLoggedIn, setIsLoggedIn }) => {
         }
       });
 
-      // Calculate kdaAverage and update the state
-      const kdaAverageValue = kdaSum / lifetimeDataResponse.data.length;
-      setKdaAverage(kdaAverageValue);
-
       // Update the kills state
       setKills(totalKills);
       setDeaths(totalDeaths);
       setAssists(totalAssists);
 
-      setTotalMatches(totalMatches);
       setMatchWins(totalWins);
       setMatchLosses(totalLosses);
 
