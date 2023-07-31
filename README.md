@@ -1,71 +1,55 @@
-# Getting Started with Create React App
+# Installation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Step 1
 
-## Available Scripts
+Download code to local terminal
 
-In the project directory, you can run:
+### Step 2
 
-### `npm start`
+Open code in vsCode
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Step 3
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+In vsCode terminal, run [$ npm i] to download npm dependencies
 
-### `npm test`
+### Step 4
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+After dependencies installed, run [$ npm start] to start test environment
 
-### `npm run build`
+# About The App
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Fixed Components
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Header and Footer will always render on every page of the website.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Header: Navigation component to allow user to navigate throughout site. In mobile viewing, navigation will be nested within a burger menu.
+2. Footer: Additional navigation on the bottom of the page with additional social icons to connect with developer.
 
-### `npm run eject`
+### Home Page
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Home page set up to display key features of the web app and the base navigation to different pages on the website. Key components are the hero and feature promo component.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Hero: To welcome user to site and give CTA to feature page.
+2. Feature Promo: Provide more details to user about key feature
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### About Page
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+About page to describe version 1 of the project developed in Python (https://sparkgg.net), bio of the developer, social media links, and list of previous projects completed by developer.
 
-## Learn More
+### Feature Page
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Key feature page to display leaderboard data of Valorant matches stored in server database (Only displays users who have account on the site or users that have been searched previously using feature.) and search feature to search up recent matches from a player's Valorant matches.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Results Page
 
-### Code Splitting
+After searching for a player, display most recent matches
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Profile Page
 
-### Analyzing the Bundle Size
+Login to profile or display profile details if user is already logged in. Also links to a register page to create an account.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+If user is logged in, will display lifetime data stored on server and display most recent matches played related to user.
 
-### Making a Progressive Web App
+### Register Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# raul-calero-capstone-client
+Register form to create a user account that will store in the server
