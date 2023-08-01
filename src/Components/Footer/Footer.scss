@@ -2,14 +2,11 @@
 
 .footer {
   background-color: #000220;
+  padding: 1rem 0;
   width: 100vw;
-  height: 15vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  bottom: 0;
-  z-index: 5;
   &__logo {
     width: 5rem;
     img {

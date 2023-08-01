@@ -12,8 +12,9 @@
 
 .about {
   background: black;
-  height: 180vh;
   padding-top: 15vh;
+  width: 100vw;
+  padding-bottom: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -149,7 +150,6 @@
     }
   }
   @include tablet {
-    height: 140vh;
     &__project {
       background-position: 10% 70%;
       background-size: 300px 200px;
@@ -196,7 +196,6 @@
     }
   }
   @include desktop {
-    height: 150vh;
     &__project {
       width: 100%;
       background-position: 40% 50%;

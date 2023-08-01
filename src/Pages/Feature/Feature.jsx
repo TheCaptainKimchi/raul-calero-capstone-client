@@ -146,12 +146,14 @@ const Feature = () => {
             className="feature__form-input--username input"
             type="text"
             name="username"
+            placeholder="Enter Riot Id"
             required
           ></input>
           <input
             className="feature__form-input--tagline input"
             type="text"
             name="tagline"
+            placeholder="Enter Tagline"
             required
           ></input>
         </div>

@@ -26,7 +26,8 @@ const LoginForm = ({ setIsLoggedIn }) => {
         window.location.reload();
       })
       .catch((err) => {
-        setLoginError(err.response.data.message);
+        console.error(err);
+        setLoginError(err.response.data.error);
       });
   };
 
@@ -44,7 +45,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
           <input type="password" name="loginPassword" id="loginPassword" />
         </div>
         <button className="login__container-form-button">Login</button>
-        {loginError && <p id="error">{loginError}</p>}
+        <p id="error">{loginError}</p>
       </form>
     </>
   );

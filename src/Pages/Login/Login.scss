@@ -2,8 +2,9 @@
 
 .login {
   padding-top: 10rem;
+  padding-bottom: 10rem;
+  width: 100vw;
   background-color: black;
-  height: 80vh;
   &__container {
     display: flex;
     flex-direction: column;
@@ -56,7 +57,7 @@
   }
   @include tablet {
     &__container {
-      height: 30vh;
+      height: 50vh;
       justify-content: center;
       margin: 1.5rem 6rem;
       &-title {
