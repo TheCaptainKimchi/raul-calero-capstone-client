@@ -13,16 +13,21 @@ const About = () => {
       {/* Details on previous project */}
       <div className="about__project">
         <div className="about__project-container">
-          <h3 className="about__project-container-title">About The Project</h3>
-          <p className="about__project-container-text">
-            Experience SparkGG V1: Where Esports Analytics Began!
-          </p>
-          <Link
-            className="about__project-container-button"
-            to={"https://sparkgg.net"}
-          >
-            <button>VISIT SITE</button>
-          </Link>
+          <div className="about__project-container-image"></div>
+          <div className="about__project-container-info">
+            <h2 className="about__project-container-info-title">
+              About The Project
+            </h2>
+            <p className="about__project-container-info-text">
+              Experience SparkGG V1: Where Esports Analytics Began!
+            </p>
+            <Link
+              className="about__project-container-info-button"
+              to={"https://sparkgg.net"}
+            >
+              <button>VISIT SITE</button>
+            </Link>
+          </div>
         </div>
       </div>
       {/* Details on developer (me :) ) */}

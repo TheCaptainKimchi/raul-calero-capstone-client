@@ -8,7 +8,8 @@ const Hero = () => {
     <div className="hero">
       <h1 className="hero__title">SparkGG</h1>
       <p className="hero__text">
-        Current of Champions: Unleash Esports Potential with SparkGG!
+        Current of Champions: Take your Valorant skills to the next level with
+        our data analytics!
       </p>
       <Link className="hero__button" to={"/feature"}>
         <button>START NOW</button>

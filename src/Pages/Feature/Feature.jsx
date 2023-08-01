@@ -65,19 +65,6 @@ const Feature = () => {
   if (!leaderboard) {
     return (
       <div className="loading">
-        <div className="leaderboard-wrapper">
-          <div className="loading__leaderboard">
-            <h2 className="loading__leaderboard-title">Leaderboard</h2>
-            <div className="loading__leaderboard-container">
-              <div className="loading__leaderboard-container-kda"></div>
-              <div className="feature__leaderboard-container-list">
-                <div className="feature__leaderboard-container-list-kills"></div>
-                <div className="feature__leaderboard-container-list-deaths"></div>
-                <div className="feature__leaderboard-container-list-assists"></div>
-              </div>
-            </div>
-          </div>
-        </div>
         <form className="feature__form" onSubmit={submitHandler}>
           <h2 className="feature__form-title">SEARCH PLAYER</h2>
           <div className="feature__form-input">
@@ -106,34 +93,32 @@ const Feature = () => {
   return (
     // Render feature page
     <div className="feature">
-      <div className="leaderboard-wrapper">
-        {/* Render leaderboard stats */}
-        <div className="feature__leaderboard">
-          <h2 className="feature__leaderboard-title">Leaderboard</h2>
-          <div className="feature__leaderboard-container">
-            <div className="feature__leaderboard-container-kda">
-              <h3>MVP</h3>
-              <div>
-                <p>{leaderboard.bestKda.name}</p>
-                <p>{`KDA: ${Number(leaderboard.bestKda.kda.toFixed(1))}`}</p>
-              </div>
+      {/* Render leaderboard stats */}
+      <div className="feature__leaderboard">
+        <h2 className="feature__leaderboard-title">Leaderboard</h2>
+        <div className="feature__leaderboard-container">
+          <div className="feature__leaderboard-container-kda">
+            <h3>MVP</h3>
+            <div>
+              <p>{leaderboard.bestKda.name}</p>
+              <p>{`KDA: ${Number(leaderboard.bestKda.kda.toFixed(1))}`}</p>
             </div>
-            <div className="feature__leaderboard-container-list">
-              <div className="feature__leaderboard-container-list-kills">
-                <h3>One-Player-Army</h3>
-                <p>{leaderboard.mostKills.name}</p>
-                <p>{`Kills: ${leaderboard.mostKills.kills}`}</p>
-              </div>
-              <div className="feature__leaderboard-container-list-deaths">
-                <h3>Ghost Whisperer</h3>
-                <p>{leaderboard.mostDeaths.name}</p>
-                <p>{`Deaths: ${leaderboard.mostDeaths.deaths}`}</p>
-              </div>
-              <div className="feature__leaderboard-container-list-assists">
-                <h3>Team Player</h3>
-                <p>{leaderboard.mostAssists.name}</p>
-                <p>{`Assists: ${leaderboard.mostAssists.assists}`}</p>
-              </div>
+          </div>
+          <div className="feature__leaderboard-container-list">
+            <div className="feature__leaderboard-container-list-kills">
+              <h3>One-Player-Army</h3>
+              <p>{leaderboard.mostKills.name}</p>
+              <p>{`Kills: ${leaderboard.mostKills.kills}`}</p>
+            </div>
+            <div className="feature__leaderboard-container-list-deaths">
+              <h3>Ghost Whisperer</h3>
+              <p>{leaderboard.mostDeaths.name}</p>
+              <p>{`Deaths: ${leaderboard.mostDeaths.deaths}`}</p>
+            </div>
+            <div className="feature__leaderboard-container-list-assists">
+              <h3>Team Player</h3>
+              <p>{leaderboard.mostAssists.name}</p>
+              <p>{`Assists: ${leaderboard.mostAssists.assists}`}</p>
             </div>
           </div>
         </div>

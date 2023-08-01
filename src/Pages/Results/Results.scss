@@ -7,13 +7,14 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: rgb(52, 56, 68);
-  background-size: 400% 400%;
+  background: linear-gradient(-45deg, rgb(81, 3, 3), rgb(2, 2, 80));
+  background-position: center;
+  background-size: cover;
   animation: animate 6s ease infinite;
   &__header {
-    height: 20rem;
-    width: 99vw;
-    background: linear-gradient(-45deg, silver, white, black);
+    height: 36rem;
+    width: 100vw;
+    background: linear-gradient(-45deg, silver, rgb(116, 116, 116), black);
     background-size: 400% 400%;
     margin-bottom: 2rem;
     animation: skeleton 5s ease infinite;
@@ -21,6 +22,7 @@
   &__card {
     background: linear-gradient(-45deg, grey, black, silver);
     background-size: 400% 400%;
+    border-radius: 20px;
     height: 30vh;
     width: 90vw;
     margin-bottom: 1rem;
@@ -47,8 +49,9 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: rgb(52, 56, 68);
-  background-size: 400% 400%;
+  background: linear-gradient(-45deg, rgb(81, 3, 3), rgb(2, 2, 80));
+  background-size: cover;
+  background-position: center;
   width: 100vw;
   &__top {
     background-color: rgb(21, 19, 32);

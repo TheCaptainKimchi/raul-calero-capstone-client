@@ -1,9 +1,9 @@
 @use "../../Styles/Partials/breakpoints" as *;
 
 .register {
-  padding-top: 10rem;
-  background: black;
-  height: 80vh;
+  padding-top: 15rem;
+  padding-bottom: 10.2rem;
+  background: linear-gradient(-45deg, rgb(81, 3, 3), rgb(2, 2, 80));
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -51,7 +51,7 @@
     }
   }
   @include tablet {
-    padding-top: 12rem;
+    padding-bottom: 18.5rem;
     &__form {
       height: 20rem;
       justify-content: center;

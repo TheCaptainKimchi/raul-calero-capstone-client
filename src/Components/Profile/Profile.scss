@@ -20,7 +20,6 @@
   &__bot {
     display: flex;
     flex-direction: column-reverse;
-    background-color: black;
     padding-bottom: 10rem;
     &-left {
       background: red;
@@ -38,6 +37,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        border-radius: 20px;
         width: 100%;
         &__header {
           display: flex;
@@ -153,10 +153,11 @@
       align-items: center;
       flex-direction: column;
       justify-content: space-evenly;
-      border-top: 1px solid #02f9fe;
-      border-bottom: 1px solid #02f9fe;
+      border: 1px solid #02f9fe;
+      border-radius: 20px;
       margin: 0 1rem 1rem 1rem;
       padding: 1rem 0;
+      background-color: rgb(33, 33, 33);
       h3 {
         color: white;
         margin-bottom: 1rem;
@@ -169,8 +170,7 @@
           display: flex;
           text-align: center;
           background-color: #000220;
-          border: 1px solid #02f9fe;
-          padding: 0.5rem;
+          padding: 0.5rem 1rem;
           border-radius: 10px;
           margin-bottom: 1rem;
           animation: pulsate 3s ease-in-out infinite;
@@ -186,7 +186,6 @@
   }
   @include tablet {
     &__top {
-      padding-top: 3rem;
       &-title {
         font-size: 2.5rem;
       }
