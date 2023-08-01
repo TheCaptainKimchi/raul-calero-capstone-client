@@ -1,18 +1,26 @@
 @use "../../Styles/Partials/resets";
+@use "../../Styles/Partials/breakpoints" as *;
 
 .hero {
   width: 100vw;
-  height: 72.3vh;
-  background: url("../../Assets/Images/space-background.png")
-    rgba(0, 0, 0, 0.177);
-  background-position: center;
-  background-size: cover;
-  background-blend-mode: multiply;
+  height: 73.9vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  z-index: 2;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(33, 33, 33, 0.642);
+    width: 80%;
+    padding: 3rem 1rem;
+    border-radius: 20px;
+    border: 1px solid #02f9fe;
+  }
   &__title {
     margin-bottom: 1rem;
   }
@@ -36,4 +44,26 @@
   &__text {
     color: white;
   }
+  @include tablet {
+    &__container {
+      padding: 5rem 3rem;
+      width: 60%;
+    }
+  }
+  @include desktop {
+    &__container {
+      padding: 6rem;
+      width: 40%;
+    }
+  }
+}
+
+video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90%;
+  object-fit: cover;
+  z-index: -1;
 }
