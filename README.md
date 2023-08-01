@@ -53,3 +53,55 @@ If user is logged in, will display lifetime data stored on server and display mo
 ### Register Page
 
 Register form to create a user account that will store in the server
+
+# Using The App
+
+Most functionality will be in the feature page. You may enter a Riot Games account in the search bars by adding a Riot Id in the left box and the Tagline in the right box. If you do not have a Riot Games account, you may reference other player accounts or use the sample ones below:
+
+Riot Id: xStarwise
+Tagline: Na1
+
+Riot Id: SEN TenZ
+Tagline: 0505
+
+Riot Id: JustGoNext
+Tagline: Throw
+
+Riot Id: K1NGJMZ
+Tagline: TTV
+
+The other functionality will be on the profile page. You may make an account only if you have a Riot Games account. You may also use one of the sample Riot Games accounts above to create an account. 
+
+# Tech Stacks Used
+
+### APIS
+This project only uses the Riot Games API to capture player datas from their matches as well as the games assets to render on the screen (ex. maps and characters)
+https://developer.riotgames.com/
+https://developer.riotgames.com/docs/portal
+
+### STACKS
+This project uses:
+
+- React
+- Javascript
+- CSS/SASS
+- HTML
+- Node js/Express
+- Axios
+
+# Future Phases
+Continuing on the project, some major shifts are required.
+
+### Phase 1
+Restructure the site to utilize the Riot Authentication tool to have the players create an account and give explicit permission for their account to be used with their API. This will mean the core feature to search up players may only be used if they have an account with the site. 
+
+### Phase 2
+Adjustment of the displayed data metrics to display more intuitive data of the player's matches. The matches currently only display KDA, ACS, map played, character played, and if the player won or lost. Additional data will include but not limited to:
+
+- Rounds played
+- Per round metrics (weapons purchased, credits awarded/spent, KDA/ACS with timestamps and locations)
+- Map layouts of key events
+- Lifetime character/map data (Filtered by character on map and map statistics alone)
+
+### Phase 3
+Introduction of a coaching tool to create a team and add users to your team. This tool will automatically track and provide detailed insights on the players that have been added to the team and can be exported in various formats for the "coach/captain" to analyze for their team's development.
