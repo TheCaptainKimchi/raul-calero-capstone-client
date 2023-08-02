@@ -2,8 +2,7 @@
 @use "../../Styles/Partials/breakpoints" as *;
 
 .hero {
-  width: 100vw;
-  height: 73.9vh;
+  height: 74.3vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,7 +14,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(33, 33, 33, 0.642);
+    background-color: rgba(0, 0, 0, 0.674);
     width: 80%;
     padding: 3rem 1rem;
     border-radius: 20px;
@@ -26,6 +25,7 @@
   }
   &__text {
     margin-bottom: 0.5rem;
+    font-style: italic;
   }
   &__button {
     display: flex;
@@ -46,8 +46,11 @@
   }
   @include tablet {
     &__container {
-      padding: 5rem 3rem;
+      padding: 3rem 3rem;
       width: 60%;
+    }
+    &__title {
+      padding-bottom: 2rem;
     }
   }
   @include desktop {
@@ -62,7 +65,7 @@ video {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 90%;
   object-fit: cover;
   z-index: -1;

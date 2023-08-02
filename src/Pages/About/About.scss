@@ -168,6 +168,11 @@
         &-text {
           font-size: 1.25rem;
         }
+        &-image {
+          background-size: contain;
+          background-repeat: no-repeat;
+          width: 50%;
+        }
       }
     }
     &__developer {
@@ -201,6 +206,14 @@
     }
   }
   @include desktop {
+    &__project {
+      &-container {
+        margin-bottom: 5rem;
+        &-image {
+          width: 30%;
+        }
+      }
+    }
     &__developer {
       margin: 1rem 8rem;
       &-title {
