@@ -16,6 +16,10 @@ In vsCode terminal, run [$ npm i] to download npm dependencies
 
 After dependencies installed, run [$ npm start] to start test environment
 
+### Step 5
+
+The client also utilizes a server to store the user matches in a database. Please visit the server repository for further information on how to get that installed. https://github.com/TheCaptainKimchi/raul-calero-capstone-server
+
 # About The App
 
 ### Fixed Components
